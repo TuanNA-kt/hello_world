@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                   style: TextStyle(fontSize: 14, color: AppColors.primaryBlue),
                 ),
               ),
-              PrimaryButton(text: 'Đăng ký', onPressed: onPressed)
+              PrimaryButton(text: 'Đăng ký', onPressed: onPressed),
             ],
           ),
         ),
