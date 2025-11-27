@@ -5,6 +5,8 @@ import 'package:hello_world/common/widgets/custom_text_field.dart';
 import 'package:hello_world/common/widgets/primary_button.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
