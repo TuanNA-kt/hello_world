@@ -8,6 +8,8 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String hint;
   final String iconPath;
+  final String? errorText;
+  final void Function(String) onChanged;
   final TextFieldType type;
 
   const CustomTextField({
@@ -15,6 +17,8 @@ class CustomTextField extends StatelessWidget {
     required this.label,
     required this.hint,
     required this.iconPath,
+    required this.errorText,
+    required this.onChanged,
     required this.type,
   });
 
@@ -27,13 +31,19 @@ class CustomTextField extends StatelessWidget {
           label.toUpperCase(),
           style: const TextStyle(color: AppColors.gray),
         ),
-        const SizedBox(height: 8),
         TextFormField(
           obscureText: _isPasswordForm(),
+          onChanged: onChanged,
+          style: TextStyle(fontSize: 18),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: const TextStyle(color: AppColors.gray),
-            suffixIcon: SvgPicture.asset(iconPath, width: 16, height: 16),
+            suffixIcon: SizedBox(child: SvgPicture.asset(iconPath)),
+            suffixIconConstraints: const BoxConstraints(
+              maxHeight: 16,
+              maxWidth: 16,
+            ),
+            errorText: (errorText != null) ? errorText : null,
           ),
         ),
       ],

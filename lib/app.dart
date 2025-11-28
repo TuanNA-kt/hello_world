@@ -7,7 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'modules/auth/bloc/authentication_bloc.dart';
-import 'modules/auth/login_screen.dart';
+import 'modules/login/view/login_screen.dart';
+import 'modules/register/view/register_screen.dart';
 import 'modules/splash/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -47,13 +48,28 @@ class _AppViewState extends State<AppView> {
     final authBloc = context.read<AuthenticationBloc>();
 
     final GoRouter router = GoRouter(
-        routes: <RouteBase>[
-          GoRoute(path: '/', builder: (_, _) => const SplashScreen(),
-            routes: <RouteBase>[
-              GoRoute(path: 'login', builder: (_, _) => const LoginScreen())
-            ],
-          ),
-        ],
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/',
+          name: 'splash',
+          builder: (_, _) => const SplashScreen(),
+
+          routes: <RouteBase>[
+            GoRoute(
+              path: 'login',
+              name: 'login',
+              builder: (_, _) => const LoginScreen(),
+            ),
+
+            GoRoute(
+              path: 'register',
+              name: 'register',
+              builder: (_, _) => const RegisterScreen(),
+            ),
+
+          ],
+        ),
+      ],
 
         redirect: (context, state) {
           final authState = authBloc.state.status;
