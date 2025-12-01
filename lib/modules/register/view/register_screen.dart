@@ -1,13 +1,9 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hello_world/common/app_colors.dart';
-import 'package:hello_world/common/widgets/custom_text_field.dart';
-import 'package:hello_world/common/widgets/primary_button.dart';
-import 'package:hello_world/modules/login/view/login_form.dart';
+import 'package:hello_world/modules/register/view/register_form.dart';
 
-import '../../login/bloc/login_bloc.dart';
+import '../bloc/register_bloc.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -18,18 +14,13 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
             child: BlocProvider(
-                create: (BuildContext context) => LoginBloc(
+                create: (BuildContext context) => RegisterBloc(
                     authenticationRepository: context.read<AuthenticationRepository>()
                 ),
-                child: const LoginForm()
+                child: const RegisterForm()
             )
         )
     );
-  }
-
-
-
-  void onPressed() {
   }
 
 }

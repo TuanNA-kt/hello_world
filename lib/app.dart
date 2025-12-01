@@ -73,6 +73,7 @@ class _AppViewState extends State<AppView> {
 
         redirect: (context, state) {
           final authState = authBloc.state.status;
+          final List<String> unauthenticatedRoutes = ['/login', '/register'];
 
           switch(authState) {
             case AuthenticationStatus.unknown:
@@ -80,6 +81,7 @@ class _AppViewState extends State<AppView> {
             case AuthenticationStatus.authenticated:
               return '/home';
             case AuthenticationStatus.unauthenticated:
+              if(unauthenticatedRoutes.contains(state.uri.toString())) return null;
               return '/login';
 
           }

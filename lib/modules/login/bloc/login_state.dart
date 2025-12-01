@@ -7,15 +7,13 @@ final class LoginState extends Equatable {
   final bool isValid;
 
   LoginState({
-    // Bỏ giá trị mặc định của username và password khỏi đây:
     this.status = FormzSubmissionStatus.initial,
-    Username? username, // Giờ là nullable
+    Username? username,
     Password? password,
-    bool? isValid,
+    this.isValid = false,
   }) :
-        username = username ?? Username.pure(), // <-- KHÔNG CONST
-        password = password ?? Password.pure(), // <-- KHÔNG CONST
-        isValid = isValid ?? false;
+        username = username ?? Username.pure(),
+        password = password ?? Password.pure();
 
   LoginState copyWith({
     FormzSubmissionStatus? status,

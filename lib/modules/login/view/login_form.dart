@@ -52,55 +52,19 @@ class LoginForm extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 'Quên mật khẩu?',
-                style: TextStyle(fontSize: 14, color: AppColors.primaryBlue),
+                style: TextStyle(fontSize: 14, color: AppColors.primaryBlue,
+                fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(height: 47),
             _LoginButton(),
             SizedBox(height: 123),
-            Align(alignment: Alignment.center, child: _registerFootage()),
+            Align(alignment: Alignment.center, child: _RegisterFootage()),
           ],
         ),
       ),
     );
   }
-
-  //   return Scaffold(
-  //     body: SafeArea(
-  //       child: SingleChildScrollView(
-  //         padding: const EdgeInsets.all(25),
-  //         child: Column(
-  //           crossAxisAlignment: CrossAxisAlignment.start,
-  //           children: [
-  //             const SizedBox(height: 70),
-  //             SvgPicture.asset('assets/images/ic_mail_paper_plane.svg'),
-  //             Text('Trải nghiệm Awesome chat', style: TextStyle(fontSize: 26)),
-  //             Text(
-  //               'Đăng nhập',
-  //               style: TextStyle(
-  //                 fontSize: 32,
-  //                 color: AppColors.primaryBlue,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //             SizedBox(height: 30),
-  //             _UsernameInput(),
-  //             SizedBox(height: 20),
-  //             _PasswordInput(),
-  //             Align(
-  //               alignment: Alignment.centerRight,
-  //               child: Text(
-  //                 'Quên mật khẩu?',
-  //                 style: TextStyle(fontSize: 14, color: AppColors.primaryBlue),
-  //               ),
-  //             ),
-  //             PrimaryButton(text: 'Đăng ký', onPressed: onPressed),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   void onPressed() {}
 }
@@ -172,7 +136,7 @@ class _LoginButton extends StatelessWidget {
             : null,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryBlue,
-          disabledBackgroundColor: AppColors.gray,
+          disabledBackgroundColor: AppColors.lightGray,
           minimumSize: const Size.fromHeight(52),
         ),
         child: const Text(
@@ -184,29 +148,26 @@ class _LoginButton extends StatelessWidget {
   }
 }
 
-class _registerFootage extends StatelessWidget {
+class _RegisterFootage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        // 1. STYLE CHUNG CHO CẢ DÒNG (Cha)
         text: "Chưa có tài khoản? ",
         style: TextStyle(
-          color: Colors.grey, // Màu xám cho phần text thường
+          color: Colors.grey,
           fontSize: 14,
         ),
         children: [
-          // 2. PHẦN TEXT BẤM ĐƯỢC (Con)
           TextSpan(
             text: "Đăng ký ngay",
             style: TextStyle(
-              color: Color(0xFF2D46C6), // Màu xanh cho link
+              color: AppColors.primaryBlue,
               fontWeight: FontWeight.bold,
             ),
-            // <--- ĐÂY LÀ CHÌA KHÓA: Sử dụng TapGestureRecognizer
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                context.pushNamed('splash');
+                context.pushNamed('register');
               },
           ),
         ],

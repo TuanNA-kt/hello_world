@@ -26,9 +26,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-
-
-  void onPressed() {
-  }
-
 }
