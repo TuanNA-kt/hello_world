@@ -43,7 +43,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState>{
     if(state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        await _authenticationRepository.register(fullname: state.fullname.value, username: state.username.value, password: state.password.value);
+        await _authenticationRepository.signUp(username: state.username.value, password: state.password.value);
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } catch(_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));

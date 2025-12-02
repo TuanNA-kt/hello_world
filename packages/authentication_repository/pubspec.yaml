@@ -4,3 +4,10 @@ publish_to: none
 
 environment:
   sdk: ^3.10.0
+
+dependency:
+  cache:
+    path: ../cache
+  firebase_auth: ^6.1.2
+dependencies:
+  firebase_auth: ^6.1.2
