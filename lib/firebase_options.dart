@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '885236000174',
     projectId: 'awesomechat-7b5cb',
     authDomain: 'awesomechat-7b5cb.firebaseapp.com',
+    databaseURL: 'https://awesomechat-7b5cb-default-rtdb.firebaseio.com',
     storageBucket: 'awesomechat-7b5cb.firebasestorage.app',
     measurementId: 'G-SVM7TQQFV8',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:885236000174:android:b62d20bda986f7b149943f',
     messagingSenderId: '885236000174',
     projectId: 'awesomechat-7b5cb',
+    databaseURL: 'https://awesomechat-7b5cb-default-rtdb.firebaseio.com',
     storageBucket: 'awesomechat-7b5cb.firebasestorage.app',
   );
 
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:885236000174:ios:11fc63bd1626de5b49943f',
     messagingSenderId: '885236000174',
     projectId: 'awesomechat-7b5cb',
+    databaseURL: 'https://awesomechat-7b5cb-default-rtdb.firebaseio.com',
     storageBucket: 'awesomechat-7b5cb.firebasestorage.app',
     iosBundleId: 'com.example.helloWorld',
   );
@@ -72,6 +75,7 @@ class DefaultFirebaseOptions {
     appId: '1:885236000174:ios:11fc63bd1626de5b49943f',
     messagingSenderId: '885236000174',
     projectId: 'awesomechat-7b5cb',
+    databaseURL: 'https://awesomechat-7b5cb-default-rtdb.firebaseio.com',
     storageBucket: 'awesomechat-7b5cb.firebasestorage.app',
     iosBundleId: 'com.example.helloWorld',
   );
@@ -82,7 +86,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '885236000174',
     projectId: 'awesomechat-7b5cb',
     authDomain: 'awesomechat-7b5cb.firebaseapp.com',
+    databaseURL: 'https://awesomechat-7b5cb-default-rtdb.firebaseio.com',
     storageBucket: 'awesomechat-7b5cb.firebasestorage.app',
     measurementId: 'G-TK4T19Q77H',
   );
+
 }

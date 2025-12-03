@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:885236000174:ios:11fc63bd1626de5b49943f</string>
+	<key>DATABASE_URL</key>
+	<string>https://awesomechat-7b5cb-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

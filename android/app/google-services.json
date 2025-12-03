@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "885236000174",
+    "firebase_url": "https://awesomechat-7b5cb-default-rtdb.firebaseio.com",
     "project_id": "awesomechat-7b5cb",
     "storage_bucket": "awesomechat-7b5cb.firebasestorage.app"
   },
