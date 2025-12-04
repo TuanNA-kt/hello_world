@@ -20,7 +20,6 @@ _ChatRoom _$ChatRoomFromJson(Map<String, dynamic> json) => _ChatRoom(
   lastMessage: json['lastMessage'] == null
       ? null
       : Message.fromJson(json['lastMessage'] as Map<String, dynamic>),
-  unreadCount: (json['unreadCount'] as num?)?.toInt() ?? 1,
 );
 
 Map<String, dynamic> _$ChatRoomToJson(_ChatRoom instance) => <String, dynamic>{
@@ -33,5 +32,4 @@ Map<String, dynamic> _$ChatRoomToJson(_ChatRoom instance) => <String, dynamic>{
   'avatarUrl': instance.avatarUrl,
   'isGroup': instance.isGroup,
   'lastMessage': instance.lastMessage,
-  'unreadCount': instance.unreadCount,
 };

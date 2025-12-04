@@ -16,7 +16,6 @@ abstract class ChatRoom with _$ChatRoom {
     String? avatarUrl,
     @Default(false) bool isGroup,
     Message? lastMessage,
-    @Default(1) int unreadCount,
   }) = _ChatRoom;
 
   factory ChatRoom.fromJson(Map<String, dynamic> json) => _$ChatRoomFromJson(json);

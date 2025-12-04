@@ -1,4 +1,4 @@
-name: authentication_repository
+name: api_client
 description: Dart package which manages the network domain.
 publish_to: none
 
@@ -10,8 +10,10 @@ dependencies:
   retrofit: ^4.9.0
   logger: ^2.6.0  # for logging purpose
   json_annotation: ^4.9.0
+  freezed_annotation: ^3.1.0
 
 dev_dependencies:
   retrofit_generator: ^10.0.1
   build_runner: ^2.6.0
   json_serializable: ^6.10.0
+  freezed: ^3.2.3

@@ -1,12 +1,21 @@
 import 'package:dio/dio.dart';
-import 'package:retrofit/http.dart';
+import 'package:retrofit/retrofit.dart';
 
-@RestApi(baseUrl: 'https://api.imgbb.com/1')
-abstract class RestClient {
+import 'model/upload_response.dart';
 
-    factory RestClient(Dio dio, {String? baseUrl}) = _RestClient;
+part 'api_client.g.dart';
 
-    @POST('/upload')
-    Future<>
+@RestApi(baseUrl: 'https://api.imgbb.com/1/')
+abstract class ApiClient {
 
+  factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+
+  @POST('/upload')
+  @MultiPart()
+  Future<UploadResponse> uploadImage({
+      @Part(name: "key") required String apiKey,
+      @Part(name: "image") required MultipartFile imageFile,
+      @Part(name: "name") String? fileName,
+      @Part(name: "expiration") int? expirationSeconds}
+      );
 }

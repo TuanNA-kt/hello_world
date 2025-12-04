@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatRoom {
 
- String get id; List<String> get participantIds; DateTime get createdAt; DateTime get updatedAt; String get createdBy; String? get name; String? get avatarUrl; bool get isGroup; Message? get lastMessage; int get unreadCount;
+ String get id; List<String> get participantIds; DateTime get createdAt; DateTime get updatedAt; String get createdBy; String? get name; String? get avatarUrl; bool get isGroup; Message? get lastMessage;
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ChatRoomCopyWith<ChatRoom> get copyWith => _$ChatRoomCopyWithImpl<ChatRoom>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatRoom&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.participantIds, participantIds)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isGroup, isGroup) || other.isGroup == isGroup)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatRoom&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other.participantIds, participantIds)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isGroup, isGroup) || other.isGroup == isGroup)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(participantIds),createdAt,updatedAt,createdBy,name,avatarUrl,isGroup,lastMessage,unreadCount);
+int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(participantIds),createdAt,updatedAt,createdBy,name,avatarUrl,isGroup,lastMessage);
 
 @override
 String toString() {
-  return 'ChatRoom(id: $id, participantIds: $participantIds, createdAt: $createdAt, updatedAt: $updatedAt, createdBy: $createdBy, name: $name, avatarUrl: $avatarUrl, isGroup: $isGroup, lastMessage: $lastMessage, unreadCount: $unreadCount)';
+  return 'ChatRoom(id: $id, participantIds: $participantIds, createdAt: $createdAt, updatedAt: $updatedAt, createdBy: $createdBy, name: $name, avatarUrl: $avatarUrl, isGroup: $isGroup, lastMessage: $lastMessage)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ChatRoomCopyWith<$Res>  {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) _then) = _$ChatRoomCopyWithImpl;
 @useResult
 $Res call({
- String id, List<String> participantIds, DateTime createdAt, DateTime updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage, int unreadCount
+ String id, List<String> participantIds, DateTime createdAt, DateTime updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
 });
 
 
@@ -65,7 +65,7 @@ class _$ChatRoomCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? participantIds = null,Object? createdAt = null,Object? updatedAt = null,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,Object? unreadCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? participantIds = null,Object? createdAt = null,Object? updatedAt = null,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,participantIds: null == participantIds ? _self.participantIds : participantIds // ignore: cast_nullable_to_non_nullable
@@ -76,8 +76,7 @@ as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String?,isGroup: null == isGroup ? _self.isGroup : isGroup // ignore: cast_nullable_to_non_nullable
 as bool,lastMessage: freezed == lastMessage ? _self.lastMessage : lastMessage // ignore: cast_nullable_to_non_nullable
-as Message?,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
-as int,
+as Message?,
   ));
 }
 /// Create a copy of ChatRoom
@@ -174,10 +173,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage,  int unreadCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatRoom() when $default != null:
-return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage,_that.unreadCount);case _:
+return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
   return orElse();
 
 }
@@ -195,10 +194,10 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage,  int unreadCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoom():
-return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage,_that.unreadCount);case _:
+return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -215,10 +214,10 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage,  int unreadCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoom() when $default != null:
-return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage,_that.unreadCount);case _:
+return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
   return null;
 
 }
@@ -230,7 +229,7 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 @JsonSerializable()
 
 class _ChatRoom implements ChatRoom {
-   _ChatRoom({required this.id, required final  List<String> participantIds, required this.createdAt, required this.updatedAt, required this.createdBy, this.name, this.avatarUrl, this.isGroup = false, this.lastMessage, this.unreadCount = 1}): _participantIds = participantIds;
+   _ChatRoom({required this.id, required final  List<String> participantIds, required this.createdAt, required this.updatedAt, required this.createdBy, this.name, this.avatarUrl, this.isGroup = false, this.lastMessage}): _participantIds = participantIds;
   factory _ChatRoom.fromJson(Map<String, dynamic> json) => _$ChatRoomFromJson(json);
 
 @override final  String id;
@@ -248,7 +247,6 @@ class _ChatRoom implements ChatRoom {
 @override final  String? avatarUrl;
 @override@JsonKey() final  bool isGroup;
 @override final  Message? lastMessage;
-@override@JsonKey() final  int unreadCount;
 
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
@@ -263,16 +261,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatRoom&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._participantIds, _participantIds)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isGroup, isGroup) || other.isGroup == isGroup)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatRoom&&(identical(other.id, id) || other.id == id)&&const DeepCollectionEquality().equals(other._participantIds, _participantIds)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.createdBy, createdBy) || other.createdBy == createdBy)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.isGroup, isGroup) || other.isGroup == isGroup)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_participantIds),createdAt,updatedAt,createdBy,name,avatarUrl,isGroup,lastMessage,unreadCount);
+int get hashCode => Object.hash(runtimeType,id,const DeepCollectionEquality().hash(_participantIds),createdAt,updatedAt,createdBy,name,avatarUrl,isGroup,lastMessage);
 
 @override
 String toString() {
-  return 'ChatRoom(id: $id, participantIds: $participantIds, createdAt: $createdAt, updatedAt: $updatedAt, createdBy: $createdBy, name: $name, avatarUrl: $avatarUrl, isGroup: $isGroup, lastMessage: $lastMessage, unreadCount: $unreadCount)';
+  return 'ChatRoom(id: $id, participantIds: $participantIds, createdAt: $createdAt, updatedAt: $updatedAt, createdBy: $createdBy, name: $name, avatarUrl: $avatarUrl, isGroup: $isGroup, lastMessage: $lastMessage)';
 }
 
 
@@ -283,7 +281,7 @@ abstract mixin class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res>
   factory _$ChatRoomCopyWith(_ChatRoom value, $Res Function(_ChatRoom) _then) = __$ChatRoomCopyWithImpl;
 @override @useResult
 $Res call({
- String id, List<String> participantIds, DateTime createdAt, DateTime updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage, int unreadCount
+ String id, List<String> participantIds, DateTime createdAt, DateTime updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
 });
 
 
@@ -300,7 +298,7 @@ class __$ChatRoomCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? participantIds = null,Object? createdAt = null,Object? updatedAt = null,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,Object? unreadCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? participantIds = null,Object? createdAt = null,Object? updatedAt = null,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,}) {
   return _then(_ChatRoom(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,participantIds: null == participantIds ? _self._participantIds : participantIds // ignore: cast_nullable_to_non_nullable
@@ -311,8 +309,7 @@ as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String?,isGroup: null == isGroup ? _self.isGroup : isGroup // ignore: cast_nullable_to_non_nullable
 as bool,lastMessage: freezed == lastMessage ? _self.lastMessage : lastMessage // ignore: cast_nullable_to_non_nullable
-as Message?,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
-as int,
+as Message?,
   ));
 }
 

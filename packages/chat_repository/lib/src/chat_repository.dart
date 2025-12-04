@@ -1,3 +1,3 @@
 class ChatRepository {
-  final
+  final 
 }
