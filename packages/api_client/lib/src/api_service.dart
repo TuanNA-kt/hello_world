@@ -5,11 +5,11 @@ import 'package:dio/dio.dart';
 
 import 'model/upload_response.dart';
 
-class UploadService {
+class ApiService {
   final ApiClient _apiClient;
   final String _apiKey;
 
-  UploadService({required ApiClient apiClient, required String apiKey}) : _apiClient = apiClient, _apiKey = apiKey;
+  ApiService({required ApiClient apiClient, required String apiKey}) : _apiClient = apiClient, _apiKey = apiKey;
 
   Future<UploadResponse> uploadImage({
     required File imageFile,
