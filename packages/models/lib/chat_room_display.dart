@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'chat_room.dart';
+
 part 'chat_room_display.freezed.dart';
 part 'chat_room_display.g.dart';
 

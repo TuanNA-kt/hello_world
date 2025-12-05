@@ -5,7 +5,7 @@ class ChatsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+    return Text("Chat Screen");
   }
 
 }

@@ -1,7 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:models/chat_room.dart';
 import 'package:models/chat_room_display.dart';
 import 'package:models/message.dart';
 import 'package:models/message_type.dart';
+import 'package:models/user.dart';
 
 class ChatRemoteDataSource {
   final FirebaseDatabase _firebaseDatabase;
@@ -75,6 +77,15 @@ class ChatRemoteDataSource {
     return snapshot.value as int? ?? 0;
   }
 
+  /// Lấy chi tiết một ChatRoom cụ thể (Model Entity đầy đủ)
+  Future<ChatRoom?> getChatRoom(String chatRoomId) async {
+    final snapshot = await _chatRoomsRef.child(chatRoomId).get();
+    if (!snapshot.exists || snapshot.value == null) return null;
+    final data = Map<String, dynamic>.from(snapshot.value as Map);
+    data['id'] = chatRoomId;
+    return ChatRoom.fromJson(data);
+  }
+
   // ============================================================================
   // GỬI TIN NHẮN - ATOMIC MULTI-PATH UPDATE
   // ============================================================================
@@ -120,6 +131,30 @@ class ChatRemoteDataSource {
 
     // 5. Thực hiện ATOMIC TRANSACTION
     await _firebaseDatabase.ref().update(updates);
+  }
+
+  /// Get a specific user by ID (Used to get name/avatar for Chat List)
+  Future<User?> getUser(String userId) async {
+    final snapshot = await _usersRef.child(userId).get();
+    if (!snapshot.exists || snapshot.value == null) return null;
+
+    final json = Map<String, dynamic>.from(snapshot.value as Map);
+    json['id'] = userId; // Ensure ID is passed if not in body
+    return User.fromJson(json);
+  }
+
+  /// Get all users stream (For your "List Friend" / "New Chat" screen)
+  Stream<List<User>> getAllUsersStream() {
+    return _usersRef.onValue.map((event) {
+      final data = event.snapshot.value as Map<dynamic, dynamic>?;
+      if (data == null) return <User>[];
+
+      return data.entries.map((entry) {
+        final json = Map<String, dynamic>.from(entry.value);
+        json['id'] = entry.key;
+        return User.fromJson(json);
+      }).toList();
+    });
   }
 
   // ============================================================================

@@ -4,12 +4,20 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hello_world/modules/chats/view/chats_screen.dart';
+import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
+import 'package:hello_world/modules/profile/view/profile_screen.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'modules/auth/bloc/authentication_bloc.dart';
+import 'modules/chat_room/view/chat_room_screen.dart';
 import 'modules/login/view/login_screen.dart';
 import 'modules/register/view/register_screen.dart';
 import 'modules/splash/splash_screen.dart';
+
+final rootNavigatorKey = GlobalKey<NavigatorState>();
+final shellNavigatorKey = GlobalKey<NavigatorState>();
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -48,6 +56,7 @@ class _AppViewState extends State<AppView> {
     final authBloc = context.read<AuthenticationBloc>();
 
     final GoRouter router = GoRouter(
+      navigatorKey: rootNavigatorKey,
       routes: <RouteBase>[
         GoRoute(
           path: '/',
@@ -69,17 +78,55 @@ class _AppViewState extends State<AppView> {
 
           ],
         ),
+        ShellRoute(
+          navigatorKey: shellNavigatorKey,
+          builder: (context, state, child) {
+            return HomePage(child: child);
+          },
+          routes: [
+            GoRoute(
+              path: '/chats',
+              name: 'chats',
+              pageBuilder: (context, state) => NoTransitionPage(child: ChatsScreen(key: state.pageKey))
+            ),
+            GoRoute(
+                path: '/contacts',
+                name: 'contact',
+                pageBuilder: (context, state) => NoTransitionPage(child: ContactsScreen(key: state.pageKey))
+            ),
+            GoRoute(
+                path: '/profile',
+                name: 'profile',
+                pageBuilder: (context, state) => NoTransitionPage(child: ProfileScreen(key: state.pageKey))
+            )
+          ]
+        ),
+        GoRoute(
+          path: '/chat/:chatRoomId',
+          name: 'chatRoom',
+          builder: (context, state) {
+            final id = state.pathParameters['chatRoomId']!;
+            return ChatRoomScreen(chatRoomId: id);
+          }
+        )
       ],
 
         redirect: (context, state) {
-          final authState = authBloc.state.status;
+          final authStatus = authBloc.state.status;
+          final String path = state.matchedLocation;
           final List<String> unauthenticatedRoutes = ['/login', '/register'];
 
-          switch(authState) {
+          switch(authStatus) {
             case AuthenticationStatus.unknown:
               return '/';
             case AuthenticationStatus.authenticated:
-              return '/home';
+              if (path.startsWith('/chats') ||
+                  path.startsWith('/contacts') ||
+                  path.startsWith('/profile') ||
+                  path.startsWith('/chat/')) {
+                return null;
+              }
+              return '/chats';
             case AuthenticationStatus.unauthenticated:
               if(unauthenticatedRoutes.contains(state.uri.toString())) return null;
               return '/login';
