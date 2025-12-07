@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              context.pushNamed('chat');
+              context.pushNamed('chats');
               break;
             case 1:
               context.pushNamed('contact');

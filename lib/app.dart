@@ -11,6 +11,7 @@ import 'package:user_repository/user_repository.dart';
 
 import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/chat_room/view/chat_room_screen.dart';
+import 'modules/home/view/home_screen.dart';
 import 'modules/login/view/login_screen.dart';
 import 'modules/register/view/register_screen.dart';
 import 'modules/splash/splash_screen.dart';
@@ -81,13 +82,23 @@ class _AppViewState extends State<AppView> {
         ShellRoute(
           navigatorKey: shellNavigatorKey,
           builder: (context, state, child) {
-            return HomePage(child: child);
+            return HomeScreen(child: child);
           },
           routes: [
             GoRoute(
               path: '/chats',
               name: 'chats',
-              pageBuilder: (context, state) => NoTransitionPage(child: ChatsScreen(key: state.pageKey))
+              pageBuilder: (context, state) => NoTransitionPage(child: ChatsScreen(key: state.pageKey)),
+              routes: [
+                GoRoute(
+                    path: '/chat/:chatRoomId',
+                    name: 'chatRoom',
+                    builder: (context, state) {
+                      final id = state.pathParameters['chatRoomId']!;
+                      return ChatRoomScreen(chatRoomId: id);
+                    }
+                )
+              ]
             ),
             GoRoute(
                 path: '/contacts',
@@ -101,14 +112,6 @@ class _AppViewState extends State<AppView> {
             )
           ]
         ),
-        GoRoute(
-          path: '/chat/:chatRoomId',
-          name: 'chatRoom',
-          builder: (context, state) {
-            final id = state.pathParameters['chatRoomId']!;
-            return ChatRoomScreen(chatRoomId: id);
-          }
-        )
       ],
 
         redirect: (context, state) {
