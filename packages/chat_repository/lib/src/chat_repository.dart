@@ -96,6 +96,10 @@ class ChatRepository {
     });
   }
 
+  Future<void> markChatAsRead(String chatRoomId, String userId) async {
+    await _remoteDataSource.updateLastReadTimestamp(chatRoomId, userId);
+  }
+
   // Helper method to get all users for your "List Friend" screen
   Stream<List<User>> getAllUsers() {
     return _remoteDataSource.getAllUsersStream();

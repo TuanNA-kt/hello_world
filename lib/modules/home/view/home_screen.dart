@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
   int _calculateIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
     if (location.startsWith('/contacts')) return 1;

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -143,6 +144,7 @@ class _AppViewState extends State<AppView> {
 
     return MaterialApp.router(
       routerConfig: router,
+      debugShowCheckedModeBanner: false
     );
   }
 }
