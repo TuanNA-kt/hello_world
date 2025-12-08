@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hello_world/common/app_colors.dart';
+import 'package:models/chat_room_display.dart';
 
 class ChatsHeader extends StatelessWidget {
   const ChatsHeader({super.key});
 
-  get _onPressed => null;
+  void _onPressed(BuildContext context) {
+    context.pushNamed('createChatRoom');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,9 @@ class ChatsHeader extends StatelessWidget {
                   )
               ),
               InkWell(
-                onTap: _onPressed,
+                onTap: () {
+                  _onPressed(context);
+                },
                 customBorder: const CircleBorder(),
                 child: Container(
                   width: 35,

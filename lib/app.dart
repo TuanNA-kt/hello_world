@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
+import 'package:hello_world/modules/create_chat_room/view/create_chat_screen.dart';
 import 'package:hello_world/modules/profile/view/profile_screen.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -98,7 +99,14 @@ class _AppViewState extends State<AppView> {
                       final id = state.pathParameters['chatRoomId']!;
                       return ChatRoomScreen(chatRoomId: id);
                     }
-                )
+                ),
+                GoRoute(
+                    path: '/chat/create_chat_room',
+                    name: 'createChatRoom',
+                    builder: (context, state) {
+                      return CreateChatScreen();
+                    }
+                ),
               ]
             ),
             GoRoute(
