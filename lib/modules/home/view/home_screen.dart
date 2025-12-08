@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              context.pushNamed('chat');
+              context.pushNamed('chats');
               break;
             case 1:
               context.pushNamed('contact');
@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
   int _calculateIndex(BuildContext context) {
     final location = GoRouterState.of(context).uri.toString();
     if (location.startsWith('/contacts')) return 1;

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +12,7 @@ import 'package:user_repository/user_repository.dart';
 
 import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/chat_room/view/chat_room_screen.dart';
+import 'modules/home/view/home_screen.dart';
 import 'modules/login/view/login_screen.dart';
 import 'modules/register/view/register_screen.dart';
 import 'modules/splash/splash_screen.dart';
@@ -81,7 +83,7 @@ class _AppViewState extends State<AppView> {
         ShellRoute(
           navigatorKey: shellNavigatorKey,
           builder: (context, state, child) {
-            return HomePage(child: child);
+            return HomeScreen(child: child);
           },
           routes: [
             GoRoute(
@@ -140,6 +142,7 @@ class _AppViewState extends State<AppView> {
 
     return MaterialApp.router(
       routerConfig: router,
+      debugShowCheckedModeBanner: false
     );
   }
 }
