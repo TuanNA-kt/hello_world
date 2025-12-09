@@ -4,7 +4,7 @@ import 'package:models/chat_room_display.dart';
 
 part 'chats_state.freezed.dart';
 
-enum ChatsStatus { initial, loading, success, failure, searching }
+enum ChatsStatus { initial, loading, success, failure }
 
 @freezed
 abstract class ChatsState with _$ChatsState {

@@ -12,8 +12,8 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   email: json['email'] as String?,
   avatarUrl: json['avatarUrl'] as String?,
   isOnline: json['isOnline'] as bool,
-  lastSeen: DateTime.parse(json['lastSeen'] as String),
-  createdAt: DateTime.parse(json['createdAt'] as String),
+  lastSeen: (json['lastSeen'] as num).toInt(),
+  createdAt: (json['createdAt'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
@@ -22,6 +22,6 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'email': instance.email,
   'avatarUrl': instance.avatarUrl,
   'isOnline': instance.isOnline,
-  'lastSeen': instance.lastSeen.toIso8601String(),
-  'createdAt': instance.createdAt.toIso8601String(),
+  'lastSeen': instance.lastSeen,
+  'createdAt': instance.createdAt,
 };

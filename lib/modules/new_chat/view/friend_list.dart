@@ -1,36 +1,34 @@
 import 'package:chat_repository/chat_repository.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hello_world/modules/new_chat/bloc/new_chat_cubit.dart';
+import 'package:hello_world/modules/new_chat/bloc/new_chat_state.dart';
+import 'package:hello_world/modules/new_chat/view/friend_list_item.dart';
 import 'package:models/chat_room_display.dart';
 
 import '../../../common/app_colors.dart';
 import '../../../di/injection.dart';
 
-class ChatsList extends StatelessWidget {
-  const ChatsList({super.key});
-
-  void _onChatItemClick(ChatRoomDisplay chatRoom, BuildContext context) {
-
-  }
-
+class FriendList extends StatelessWidget {
+  const FriendList({super.key});
+  
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatsBloc, ChatsState>(
-      builder: (BuildContext context, ChatsState state) {
-        if (state.status == ChatsStatus.loading) {
+    return BlocBuilder<NewChatCubit, NewChatState>(
+      builder: (BuildContext context, NewChatState state) {
+        if (state.status == NewChatStatus.loading) {
           return const Center(child: CircularProgressIndicator());
         }
-        if (state.status == ChatsStatus.failure) {
+        if (state.status == NewChatStatus.failure) {
           return Center(child: Text("Error: ${state.errorMessage}"));
         }
 
-        final chats = state.isSearching
-            ? state.filteredChatRooms
-            : state.chatRooms;
+        final users = state.isSearching
+            ? state.filteredFriendList
+            : state.friendList;
 
-        if (state.isSearching && chats.isEmpty) {
+        if (state.isSearching && users.isEmpty) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -61,13 +59,14 @@ class ChatsList extends StatelessWidget {
               ),
               child: ListView.separated(
                 separatorBuilder: (_, _) => const Divider(indent: 80),
-                itemCount: chats.length,
+                itemCount: users.length,
                 itemBuilder: (context, index) {
-                  final chat = chats[index];
+                  final user = users[index];
 
-                  return ChatListItem(
-                      chatRoomDisplay: chat,
-                      onClick: _onChatItemClick
+                  return FriendListItem(
+                      user: user,
+                      isSelected: state.isUserSelected(user),
+                      onClick: () => context.read<NewChatCubit>().toggleUserSelection(user)
                   );
                 },
               ),

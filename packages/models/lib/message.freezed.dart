@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Message {
 
- String get id; String get chatRoomId; String get senderId; String get content;@MessageTypeConverter() MessageType get type; String? get mediaUrl; DateTime get timestamp; List<String> get readBy;
+ String get id; String get chatRoomId; String get senderId; String get content;@MessageTypeConverter() MessageType get type; String? get mediaUrl; int? get timestamp; List<String> get readBy;
 /// Create a copy of Message
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MessageCopyWith<$Res>  {
   factory $MessageCopyWith(Message value, $Res Function(Message) _then) = _$MessageCopyWithImpl;
 @useResult
 $Res call({
- String id, String chatRoomId, String senderId, String content,@MessageTypeConverter() MessageType type, String? mediaUrl, DateTime timestamp, List<String> readBy
+ String id, String chatRoomId, String senderId, String content,@MessageTypeConverter() MessageType type, String? mediaUrl, int? timestamp, List<String> readBy
 });
 
 
@@ -65,7 +65,7 @@ class _$MessageCopyWithImpl<$Res>
 
 /// Create a copy of Message
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? chatRoomId = null,Object? senderId = null,Object? content = null,Object? type = null,Object? mediaUrl = freezed,Object? timestamp = null,Object? readBy = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? chatRoomId = null,Object? senderId = null,Object? content = null,Object? type = null,Object? mediaUrl = freezed,Object? timestamp = freezed,Object? readBy = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,chatRoomId: null == chatRoomId ? _self.chatRoomId : chatRoomId // ignore: cast_nullable_to_non_nullable
@@ -73,8 +73,8 @@ as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as MessageType,mediaUrl: freezed == mediaUrl ? _self.mediaUrl : mediaUrl // ignore: cast_nullable_to_non_nullable
-as String?,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as DateTime,readBy: null == readBy ? _self.readBy : readBy // ignore: cast_nullable_to_non_nullable
+as String?,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as int?,readBy: null == readBy ? _self.readBy : readBy // ignore: cast_nullable_to_non_nullable
 as List<String>,
   ));
 }
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  DateTime timestamp,  List<String> readBy)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  int? timestamp,  List<String> readBy)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Message() when $default != null:
 return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.type,_that.mediaUrl,_that.timestamp,_that.readBy);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.typ
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  DateTime timestamp,  List<String> readBy)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  int? timestamp,  List<String> readBy)  $default,) {final _that = this;
 switch (_that) {
 case _Message():
 return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.type,_that.mediaUrl,_that.timestamp,_that.readBy);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.typ
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  DateTime timestamp,  List<String> readBy)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  int? timestamp,  List<String> readBy)?  $default,) {final _that = this;
 switch (_that) {
 case _Message() when $default != null:
 return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.type,_that.mediaUrl,_that.timestamp,_that.readBy);case _:
@@ -216,7 +216,7 @@ return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.typ
 @JsonSerializable()
 
 class _Message implements Message {
-   _Message({required this.id, required this.chatRoomId, required this.senderId, required this.content, @MessageTypeConverter() required this.type, this.mediaUrl, required this.timestamp, final  List<String> readBy = const []}): _readBy = readBy;
+   _Message({required this.id, required this.chatRoomId, required this.senderId, required this.content, @MessageTypeConverter() required this.type, this.mediaUrl, this.timestamp, final  List<String> readBy = const []}): _readBy = readBy;
   factory _Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
 
 @override final  String id;
@@ -225,7 +225,7 @@ class _Message implements Message {
 @override final  String content;
 @override@MessageTypeConverter() final  MessageType type;
 @override final  String? mediaUrl;
-@override final  DateTime timestamp;
+@override final  int? timestamp;
  final  List<String> _readBy;
 @override@JsonKey() List<String> get readBy {
   if (_readBy is EqualUnmodifiableListView) return _readBy;
@@ -267,7 +267,7 @@ abstract mixin class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   factory _$MessageCopyWith(_Message value, $Res Function(_Message) _then) = __$MessageCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String chatRoomId, String senderId, String content,@MessageTypeConverter() MessageType type, String? mediaUrl, DateTime timestamp, List<String> readBy
+ String id, String chatRoomId, String senderId, String content,@MessageTypeConverter() MessageType type, String? mediaUrl, int? timestamp, List<String> readBy
 });
 
 
@@ -284,7 +284,7 @@ class __$MessageCopyWithImpl<$Res>
 
 /// Create a copy of Message
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? chatRoomId = null,Object? senderId = null,Object? content = null,Object? type = null,Object? mediaUrl = freezed,Object? timestamp = null,Object? readBy = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? chatRoomId = null,Object? senderId = null,Object? content = null,Object? type = null,Object? mediaUrl = freezed,Object? timestamp = freezed,Object? readBy = null,}) {
   return _then(_Message(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,chatRoomId: null == chatRoomId ? _self.chatRoomId : chatRoomId // ignore: cast_nullable_to_non_nullable
@@ -292,8 +292,8 @@ as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as MessageType,mediaUrl: freezed == mediaUrl ? _self.mediaUrl : mediaUrl // ignore: cast_nullable_to_non_nullable
-as String?,timestamp: null == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
-as DateTime,readBy: null == readBy ? _self._readBy : readBy // ignore: cast_nullable_to_non_nullable
+as String?,timestamp: freezed == timestamp ? _self.timestamp : timestamp // ignore: cast_nullable_to_non_nullable
+as int?,readBy: null == readBy ? _self._readBy : readBy // ignore: cast_nullable_to_non_nullable
 as List<String>,
   ));
 }

@@ -1,13 +1,11 @@
 import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
-import 'package:hello_world/modules/create_chat_room/view/create_chat_screen.dart';
 import 'package:hello_world/modules/profile/view/profile_screen.dart';
 import 'package:user_repository/user_repository.dart';
 
@@ -15,6 +13,7 @@ import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/chat_room/view/chat_room_screen.dart';
 import 'modules/home/view/home_screen.dart';
 import 'modules/login/view/login_screen.dart';
+import 'modules/new_chat/view/new_chat_screen.dart';
 import 'modules/register/view/register_screen.dart';
 import 'modules/splash/splash_screen.dart';
 
@@ -101,10 +100,10 @@ class _AppViewState extends State<AppView> {
                     }
                 ),
                 GoRoute(
-                    path: '/chat/create_chat_room',
-                    name: 'createChatRoom',
+                    path: '/chat/new_chat',
+                    name: 'newChat',
                     builder: (context, state) {
-                      return CreateChatScreen();
+                      return NewChatScreen();
                     }
                 ),
               ]

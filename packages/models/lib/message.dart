@@ -14,7 +14,7 @@ abstract class Message with _$Message {
     required String content,
     @MessageTypeConverter() required MessageType type,
     String? mediaUrl,
-    required DateTime timestamp,
+    int? timestamp,
     @Default([])
     List<String> readBy
   }) = _Message;

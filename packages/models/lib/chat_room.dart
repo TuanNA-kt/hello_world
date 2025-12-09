@@ -7,10 +7,10 @@ part 'chat_room.g.dart';
 @freezed
 abstract class ChatRoom with _$ChatRoom {
   factory ChatRoom({
-    required String id,
+    String? id,
     required List<String> participantIds,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    int? createdAt,
+    int? updatedAt,
     required String createdBy,
     String? name,
     String? avatarUrl,

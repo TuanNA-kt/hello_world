@@ -10,8 +10,8 @@ abstract class User with _$User {
     required String name,
     String? email, String? avatarUrl,
     required bool isOnline,
-    required DateTime lastSeen,
-    required DateTime createdAt}) = _User;
+    required int lastSeen,
+    int? createdAt}) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world/modules/chats/view/chats_header.dart';
+import 'package:hello_world/modules/new_chat/view/new_chat_screen.dart';
 
 import '../../chats/view/chats_search_bar.dart';
 import 'friend_list.dart';
@@ -14,7 +15,9 @@ class CreateChatView extends StatelessWidget {
       children: const [
         ChatsHeader(),
         ChatsSearchBar(),
-        Expanded(child: F),
+        Expanded(
+          child: FriendList(),
+        )
       ],
     );
   }

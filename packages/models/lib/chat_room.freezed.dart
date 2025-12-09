@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatRoom {
 
- String get id; List<String> get participantIds; DateTime get createdAt; DateTime get updatedAt; String get createdBy; String? get name; String? get avatarUrl; bool get isGroup; Message? get lastMessage;
+ String? get id; List<String> get participantIds; int? get createdAt; int? get updatedAt; String get createdBy; String? get name; String? get avatarUrl; bool get isGroup; Message? get lastMessage;
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ChatRoomCopyWith<$Res>  {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) _then) = _$ChatRoomCopyWithImpl;
 @useResult
 $Res call({
- String id, List<String> participantIds, DateTime createdAt, DateTime updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
+ String? id, List<String> participantIds, int? createdAt, int? updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
 });
 
 
@@ -65,13 +65,13 @@ class _$ChatRoomCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? participantIds = null,Object? createdAt = null,Object? updatedAt = null,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? participantIds = null,Object? createdAt = freezed,Object? updatedAt = freezed,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,participantIds: null == participantIds ? _self.participantIds : participantIds // ignore: cast_nullable_to_non_nullable
-as List<String>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,createdBy: null == createdBy ? _self.createdBy : createdBy // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,participantIds: null == participantIds ? _self.participantIds : participantIds // ignore: cast_nullable_to_non_nullable
+as List<String>,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as int?,createdBy: null == createdBy ? _self.createdBy : createdBy // ignore: cast_nullable_to_non_nullable
 as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String?,isGroup: null == isGroup ? _self.isGroup : isGroup // ignore: cast_nullable_to_non_nullable
@@ -173,7 +173,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  List<String> participantIds,  int? createdAt,  int? updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatRoom() when $default != null:
 return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
@@ -194,7 +194,7 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  List<String> participantIds,  int? createdAt,  int? updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoom():
 return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
@@ -214,7 +214,7 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  List<String> participantIds,  DateTime createdAt,  DateTime updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  List<String> participantIds,  int? createdAt,  int? updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoom() when $default != null:
 return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
@@ -229,10 +229,10 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 @JsonSerializable()
 
 class _ChatRoom implements ChatRoom {
-   _ChatRoom({required this.id, required final  List<String> participantIds, required this.createdAt, required this.updatedAt, required this.createdBy, this.name, this.avatarUrl, this.isGroup = false, this.lastMessage}): _participantIds = participantIds;
+   _ChatRoom({this.id, required final  List<String> participantIds, this.createdAt, this.updatedAt, required this.createdBy, this.name, this.avatarUrl, this.isGroup = false, this.lastMessage}): _participantIds = participantIds;
   factory _ChatRoom.fromJson(Map<String, dynamic> json) => _$ChatRoomFromJson(json);
 
-@override final  String id;
+@override final  String? id;
  final  List<String> _participantIds;
 @override List<String> get participantIds {
   if (_participantIds is EqualUnmodifiableListView) return _participantIds;
@@ -240,8 +240,8 @@ class _ChatRoom implements ChatRoom {
   return EqualUnmodifiableListView(_participantIds);
 }
 
-@override final  DateTime createdAt;
-@override final  DateTime updatedAt;
+@override final  int? createdAt;
+@override final  int? updatedAt;
 @override final  String createdBy;
 @override final  String? name;
 @override final  String? avatarUrl;
@@ -281,7 +281,7 @@ abstract mixin class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res>
   factory _$ChatRoomCopyWith(_ChatRoom value, $Res Function(_ChatRoom) _then) = __$ChatRoomCopyWithImpl;
 @override @useResult
 $Res call({
- String id, List<String> participantIds, DateTime createdAt, DateTime updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
+ String? id, List<String> participantIds, int? createdAt, int? updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
 });
 
 
@@ -298,13 +298,13 @@ class __$ChatRoomCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? participantIds = null,Object? createdAt = null,Object? updatedAt = null,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? participantIds = null,Object? createdAt = freezed,Object? updatedAt = freezed,Object? createdBy = null,Object? name = freezed,Object? avatarUrl = freezed,Object? isGroup = null,Object? lastMessage = freezed,}) {
   return _then(_ChatRoom(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,participantIds: null == participantIds ? _self._participantIds : participantIds // ignore: cast_nullable_to_non_nullable
-as List<String>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,createdBy: null == createdBy ? _self.createdBy : createdBy // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,participantIds: null == participantIds ? _self._participantIds : participantIds // ignore: cast_nullable_to_non_nullable
+as List<String>,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as int?,createdBy: null == createdBy ? _self.createdBy : createdBy // ignore: cast_nullable_to_non_nullable
 as String,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String?,isGroup: null == isGroup ? _self.isGroup : isGroup // ignore: cast_nullable_to_non_nullable

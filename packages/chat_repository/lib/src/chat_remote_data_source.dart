@@ -86,6 +86,31 @@ class ChatRemoteDataSource {
     return ChatRoom.fromJson(data);
   }
 
+  Future<String> createChatRoom({required List<String> participantIds, required String createdRoomUserId}) async {
+    final newChatRoomRef = _chatRoomsRef.push();
+    final chatRoomId = newChatRoomRef.key!;
+
+    final newChatRoom = ChatRoom(id: chatRoomId, participantIds: participantIds, createdBy: createdRoomUserId);
+    final updates = <String, dynamic>{};
+
+    updates['${_chatRoomsRef.path}/$chatRoomId'] = newChatRoom.toJson();
+    updates['${_chatRoomsRef.path}/$chatRoomId/createdAt'] = ServerValue.timestamp;
+    updates['${_chatRoomsRef.path}/$chatRoomId/updatedAt'] = ServerValue.timestamp;
+
+    for (final userId in participantIds) {
+      final path = '${_userChatRoomsRef.path}/$userId/$chatRoomId';
+      updates[path] = {
+        'updated_at': ServerValue.timestamp,
+        'last_message_text': '',
+        'sender_id': createdRoomUserId,
+      };
+    }
+
+    await _firebaseDatabase.ref().update(updates);
+
+    return chatRoomId;
+  }
+
   // ============================================================================
   // GỬI TIN NHẮN - ATOMIC MULTI-PATH UPDATE
   // ============================================================================
@@ -96,22 +121,21 @@ class ChatRemoteDataSource {
     // 1. Tạo message ID mới
     final messageRef = _messagesRef.child(message.chatRoomId).push();
     final messageId = messageRef.key!;
-    final now = DateTime.now().millisecondsSinceEpoch;
+    final now = ServerValue.timestamp;
 
     // 2. Tạo preview text cho index
     final lastMessageText = _buildMessagePreview(message);
 
-    // 3. Tạo message object hoàn chỉnh
+    // 3. Tạo message object
     final updatedMessage = message.copyWith(
       id: messageId,
-      timestamp: DateTime.fromMillisecondsSinceEpoch(now),
     );
 
     // 4. Chuẩn bị ATOMIC UPDATE cho tất cả nodes
     final updates = <String, dynamic>{};
 
     // Node 1: Lưu tin nhắn vào /messages/{chatRoomId}/{messageId}
-    _addMessageUpdate(updates, message.chatRoomId, messageId, updatedMessage);
+    _addMessageUpdate(updates, message.chatRoomId, messageId, updatedMessage, now);
 
     // Node 2: Cập nhật /chat_rooms/{chatRoomId}
     _addChatRoomUpdate(updates, message.chatRoomId, updatedMessage, now);
@@ -157,6 +181,19 @@ class ChatRemoteDataSource {
     });
   }
 
+  Future<List<User>> getAllUsers() async {
+    final snapshot = await _usersRef.get();
+    final data = snapshot.value as Map<dynamic, dynamic>?;
+    if (data == null) return <User>[];
+
+    return data.entries.map((entry) {
+      final json = Map<String, dynamic>.from(entry.value);
+      json['id'] = entry.key;
+      return User.fromJson(json);
+    }).toList();
+  }
+
+
   // ============================================================================
   // CẬP NHẬT TRẠNG THÁI ĐỌC KHI USER MỞ PHÒNG CHAT
   // ============================================================================
@@ -188,9 +225,12 @@ class ChatRemoteDataSource {
       Map<String, dynamic> updates,
       String chatRoomId,
       String messageId,
-      Message message,
+      Message updatedMessage,
+      Map<String, String> now
       ) {
-    updates['${_messagesRef.path}/$chatRoomId/$messageId'] = message.toJson();
+    final messagePath = '/messages/$chatRoomId/$messageId';
+    updates[messagePath] = updatedMessage.toJson();
+    updates['$messagePath/timestamp'] = now;
   }
 
   /// Thêm update cho node /chat_rooms/{chatRoomId}
@@ -198,11 +238,11 @@ class ChatRemoteDataSource {
       Map<String, dynamic> updates,
       String chatRoomId,
       Message lastMessage,
-      int timestamp,
+      Map<String, String> now,
       ) {
     final chatRoomPath = '${_chatRoomsRef.path}/$chatRoomId';
     updates['$chatRoomPath/last_message'] = lastMessage.toJson();
-    updates['$chatRoomPath/updated_at'] = timestamp;
+    updates['$chatRoomPath/updated_at'] = now;
   }
 
   /// Thêm updates cho index của TẤT CẢ participants
@@ -212,13 +252,13 @@ class ChatRemoteDataSource {
       String chatRoomId,
       String lastMessageText,
       String senderId,
-      int timestamp,
+      Map<String, String> now,
       ) {
     for (final userId in participantIds) {
       final indexPath = '${_userChatRoomsRef.path}/$userId/$chatRoomId';
       updates[indexPath] = {
         'last_message_text': lastMessageText,
-        'updated_at': timestamp,
+        'updated_at': now,
         'sender_id': senderId,
       };
     }
@@ -229,9 +269,9 @@ class ChatRemoteDataSource {
       Map<String, dynamic> updates,
       String chatRoomId,
       String senderId,
-      int timestamp,
+      Map<String, String> now,
       ) {
     final readStatusPath = '${_userReadStatusRef.path}/$chatRoomId/$senderId';
-    updates['$readStatusPath/last_read_timestamp'] = timestamp;
+    updates['$readStatusPath/last_read_timestamp'] = now;
   }
 }

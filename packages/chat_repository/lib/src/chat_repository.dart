@@ -1,8 +1,9 @@
 import 'package:chat_repository/src/chat_remote_data_source.dart';
-import 'package:api_client/src/api_service.dart';
+import 'package:models/chat_room.dart';
 import 'package:models/chat_room_display.dart';
 import 'package:models/user.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:api_client/rest_client.dart';
 
 class ChatRepository {
   final ChatRemoteDataSource _remoteDataSource;
@@ -50,7 +51,8 @@ class ChatRepository {
     return Stream.fromFuture(lastReadFuture).switchMap((lastReadTimestamp) {
       return _remoteDataSource.getMessagesStream(chatRoomId).map((messages) {
         final unreadMessages = messages.where((msg) =>
-        msg.timestamp.millisecondsSinceEpoch > lastReadTimestamp &&
+        msg.timestamp != null &&
+        msg.timestamp! > lastReadTimestamp &&
             msg.senderId != userId
         ).toList();
         return unreadMessages.length;
@@ -100,8 +102,17 @@ class ChatRepository {
     await _remoteDataSource.updateLastReadTimestamp(chatRoomId, userId);
   }
 
-  // Helper method to get all users for your "List Friend" screen
-  Stream<List<User>> getAllUsers() {
+  Stream<List<User>> getAllUsersStream() {
     return _remoteDataSource.getAllUsersStream();
+  }
+
+  Future<List<User>> getAllUsers() async {
+    return await _remoteDataSource.getAllUsers();
+  }
+
+  Future<ChatRoom?> createChatRoom(String currentUserId, List<User> chatParticipants) async {
+    final chatParticipantIds = chatParticipants.map((participant) => participant.id).toList();
+    final chatRoomId = await _remoteDataSource.createChatRoom(participantIds: chatParticipantIds, createdRoomUserId: currentUserId);
+    return await _remoteDataSource.getChatRoom(chatRoomId);
   }
 }

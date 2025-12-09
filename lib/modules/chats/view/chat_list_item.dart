@@ -4,7 +4,7 @@ import 'package:models/chat_room_display.dart';
 
 class ChatListItem extends StatelessWidget {
   final ChatRoomDisplay chatRoomDisplay;
-  final void onClick;
+  final void Function() onClick;
 
   const ChatListItem({
     super.key,

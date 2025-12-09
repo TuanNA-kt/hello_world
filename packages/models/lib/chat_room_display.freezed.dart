@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatRoomDisplay {
 
- String get id; String get name; String get avatarUrl; DateTime get updatedAt; String get lastMessageText; String get senderId; int get unreadCount; bool get isTyping;
+ String get id; String get name; String get avatarUrl; int? get updatedAt; String get lastMessageText; String get senderId; int get unreadCount; bool get isTyping;
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ChatRoomDisplayCopyWith<$Res>  {
   factory $ChatRoomDisplayCopyWith(ChatRoomDisplay value, $Res Function(ChatRoomDisplay) _then) = _$ChatRoomDisplayCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String avatarUrl, DateTime updatedAt, String lastMessageText, String senderId, int unreadCount, bool isTyping
+ String id, String name, String avatarUrl, int? updatedAt, String lastMessageText, String senderId, int unreadCount, bool isTyping
 });
 
 
@@ -65,13 +65,13 @@ class _$ChatRoomDisplayCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = null,Object? lastMessageText = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = freezed,Object? lastMessageText = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
+as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as int?,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
 as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
 as String,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,isTyping: null == isTyping ? _self.isTyping : isTyping // ignore: cast_nullable_to_non_nullable
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String avatarUrl,  DateTime updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String avatarUrl,  int? updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatRoomDisplay() when $default != null:
 return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessageText,_that.senderId,_that.unreadCount,_that.isTyping);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMe
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String avatarUrl,  DateTime updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String avatarUrl,  int? updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoomDisplay():
 return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessageText,_that.senderId,_that.unreadCount,_that.isTyping);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMe
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String avatarUrl,  DateTime updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String avatarUrl,  int? updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoomDisplay() when $default != null:
 return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessageText,_that.senderId,_that.unreadCount,_that.isTyping);case _:
@@ -216,13 +216,13 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMe
 @JsonSerializable()
 
 class _ChatRoomDisplay implements ChatRoomDisplay {
-   _ChatRoomDisplay({required this.id, required this.name, required this.avatarUrl, required this.updatedAt, required this.lastMessageText, required this.senderId, this.unreadCount = 0, this.isTyping = false});
+   _ChatRoomDisplay({required this.id, required this.name, required this.avatarUrl, this.updatedAt, required this.lastMessageText, required this.senderId, this.unreadCount = 0, this.isTyping = false});
   factory _ChatRoomDisplay.fromJson(Map<String, dynamic> json) => _$ChatRoomDisplayFromJson(json);
 
 @override final  String id;
 @override final  String name;
 @override final  String avatarUrl;
-@override final  DateTime updatedAt;
+@override final  int? updatedAt;
 @override final  String lastMessageText;
 @override final  String senderId;
 @override@JsonKey() final  int unreadCount;
@@ -261,7 +261,7 @@ abstract mixin class _$ChatRoomDisplayCopyWith<$Res> implements $ChatRoomDisplay
   factory _$ChatRoomDisplayCopyWith(_ChatRoomDisplay value, $Res Function(_ChatRoomDisplay) _then) = __$ChatRoomDisplayCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String avatarUrl, DateTime updatedAt, String lastMessageText, String senderId, int unreadCount, bool isTyping
+ String id, String name, String avatarUrl, int? updatedAt, String lastMessageText, String senderId, int unreadCount, bool isTyping
 });
 
 
@@ -278,13 +278,13 @@ class __$ChatRoomDisplayCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = null,Object? lastMessageText = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = freezed,Object? lastMessageText = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
   return _then(_ChatRoomDisplay(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
+as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as int?,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
 as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
 as String,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,isTyping: null == isTyping ? _self.isTyping : isTyping // ignore: cast_nullable_to_non_nullable

@@ -61,7 +61,6 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
       searchQuery: query,
       isSearching: true,
       filteredChatRooms: filtered,
-      status: ChatsStatus.searching,
     ));
   }
 

@@ -13,7 +13,7 @@ _Message _$MessageFromJson(Map<String, dynamic> json) => _Message(
   content: json['content'] as String,
   type: const MessageTypeConverter().fromJson(json['type'] as String),
   mediaUrl: json['mediaUrl'] as String?,
-  timestamp: DateTime.parse(json['timestamp'] as String),
+  timestamp: (json['timestamp'] as num?)?.toInt(),
   readBy:
       (json['readBy'] as List<dynamic>?)?.map((e) => e as String).toList() ??
       const [],
@@ -26,6 +26,6 @@ Map<String, dynamic> _$MessageToJson(_Message instance) => <String, dynamic>{
   'content': instance.content,
   'type': const MessageTypeConverter().toJson(instance.type),
   'mediaUrl': instance.mediaUrl,
-  'timestamp': instance.timestamp.toIso8601String(),
+  'timestamp': instance.timestamp,
   'readBy': instance.readBy,
 };

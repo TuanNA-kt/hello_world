@@ -7,12 +7,12 @@ part of 'chat_room.dart';
 // **************************************************************************
 
 _ChatRoom _$ChatRoomFromJson(Map<String, dynamic> json) => _ChatRoom(
-  id: json['id'] as String,
+  id: json['id'] as String?,
   participantIds: (json['participantIds'] as List<dynamic>)
       .map((e) => e as String)
       .toList(),
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: (json['createdAt'] as num?)?.toInt(),
+  updatedAt: (json['updatedAt'] as num?)?.toInt(),
   createdBy: json['createdBy'] as String,
   name: json['name'] as String?,
   avatarUrl: json['avatarUrl'] as String?,
@@ -25,8 +25,8 @@ _ChatRoom _$ChatRoomFromJson(Map<String, dynamic> json) => _ChatRoom(
 Map<String, dynamic> _$ChatRoomToJson(_ChatRoom instance) => <String, dynamic>{
   'id': instance.id,
   'participantIds': instance.participantIds,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
+  'createdAt': instance.createdAt,
+  'updatedAt': instance.updatedAt,
   'createdBy': instance.createdBy,
   'name': instance.name,
   'avatarUrl': instance.avatarUrl,

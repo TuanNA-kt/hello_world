@@ -7,10 +7,10 @@ import 'package:user_repository/user_repository.dart';
 
 import '../../../common/widgets/app_inside_background.dart';
 import '../../../di/injection.dart';
-import 'create_chat_view.dart';
+import 'new_chat_view.dart';
 
-class CreateChatScreen extends StatelessWidget {
-  const CreateChatScreen({super.key});
+class NewChatScreen extends StatelessWidget {
+  const NewChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String get id; String get name; String? get email; String? get avatarUrl; bool get isOnline; DateTime get lastSeen; DateTime get createdAt;
+ String get id; String get name; String? get email; String? get avatarUrl; bool get isOnline; int get lastSeen; int? get createdAt;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? email, String? avatarUrl, bool isOnline, DateTime lastSeen, DateTime createdAt
+ String id, String name, String? email, String? avatarUrl, bool isOnline, int lastSeen, int? createdAt
 });
 
 
@@ -65,7 +65,7 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? isOnline = null,Object? lastSeen = null,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? isOnline = null,Object? lastSeen = null,Object? createdAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -73,8 +73,8 @@ as String,email: freezed == email ? _self.email : email // ignore: cast_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String?,isOnline: null == isOnline ? _self.isOnline : isOnline // ignore: cast_nullable_to_non_nullable
 as bool,lastSeen: null == lastSeen ? _self.lastSeen : lastSeen // ignore: cast_nullable_to_non_nullable
-as DateTime,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as int,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  bool isOnline,  DateTime lastSeen,  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  bool isOnline,  int lastSeen,  int? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.isOnline,_that.lastSeen,_that.createdAt);case _:
@@ -180,7 +180,7 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.isOnline,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  bool isOnline,  DateTime lastSeen,  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  bool isOnline,  int lastSeen,  int? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _User():
 return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.isOnline,_that.lastSeen,_that.createdAt);case _:
@@ -200,7 +200,7 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.isOnline,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? email,  String? avatarUrl,  bool isOnline,  DateTime lastSeen,  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? email,  String? avatarUrl,  bool isOnline,  int lastSeen,  int? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.isOnline,_that.lastSeen,_that.createdAt);case _:
@@ -215,7 +215,7 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.isOnline,_
 @JsonSerializable()
 
 class _User implements User {
-  const _User({required this.id, required this.name, this.email, this.avatarUrl, required this.isOnline, required this.lastSeen, required this.createdAt});
+  const _User({required this.id, required this.name, this.email, this.avatarUrl, required this.isOnline, required this.lastSeen, this.createdAt});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  String id;
@@ -223,8 +223,8 @@ class _User implements User {
 @override final  String? email;
 @override final  String? avatarUrl;
 @override final  bool isOnline;
-@override final  DateTime lastSeen;
-@override final  DateTime createdAt;
+@override final  int lastSeen;
+@override final  int? createdAt;
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
@@ -259,7 +259,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? email, String? avatarUrl, bool isOnline, DateTime lastSeen, DateTime createdAt
+ String id, String name, String? email, String? avatarUrl, bool isOnline, int lastSeen, int? createdAt
 });
 
 
@@ -276,7 +276,7 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? isOnline = null,Object? lastSeen = null,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? isOnline = null,Object? lastSeen = null,Object? createdAt = freezed,}) {
   return _then(_User(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
@@ -284,8 +284,8 @@ as String,email: freezed == email ? _self.email : email // ignore: cast_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String?,isOnline: null == isOnline ? _self.isOnline : isOnline // ignore: cast_nullable_to_non_nullable
 as bool,lastSeen: null == lastSeen ? _self.lastSeen : lastSeen // ignore: cast_nullable_to_non_nullable
-as DateTime,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as int,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
 
