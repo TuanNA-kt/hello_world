@@ -11,8 +11,8 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   name: json['name'] as String,
   email: json['email'] as String?,
   avatarUrl: json['avatarUrl'] as String?,
-  isOnline: json['isOnline'] as bool,
-  lastSeen: (json['lastSeen'] as num).toInt(),
+  lastSeen: (json['lastSeen'] as num?)?.toInt(),
+  fcmToken: json['fcmToken'] as String?,
   createdAt: (json['createdAt'] as num?)?.toInt(),
 );
 
@@ -21,7 +21,7 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'name': instance.name,
   'email': instance.email,
   'avatarUrl': instance.avatarUrl,
-  'isOnline': instance.isOnline,
   'lastSeen': instance.lastSeen,
+  'fcmToken': instance.fcmToken,
   'createdAt': instance.createdAt,
 };
