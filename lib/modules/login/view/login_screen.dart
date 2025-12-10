@@ -7,6 +7,7 @@ import 'package:hello_world/common/widgets/custom_text_field.dart';
 import 'package:hello_world/common/widgets/primary_button.dart';
 import 'package:hello_world/modules/login/view/login_form.dart';
 
+import '../../../di/injection.dart';
 import '../bloc/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: BlocProvider(
           create: (BuildContext context) => LoginBloc(
-            authenticationRepository: context.read<AuthenticationRepository>()
+            authenticationRepository: sl<AuthenticationRepository>()
           ),
           child: const LoginForm()
         )

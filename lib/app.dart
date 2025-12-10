@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
 import 'package:hello_world/modules/profile/view/profile_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'di/injection.dart';
@@ -23,24 +21,18 @@ import 'modules/splash/splash_screen.dart';
 final rootNavigatorKey = GlobalKey<NavigatorState>();
 final shellNavigatorKey = GlobalKey<NavigatorState>();
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider(create: (_) => AuthenticationRepository()),
-        ],
-        child: BlocProvider(
-          create: (context) => AuthenticationBloc(
-            authenticationRepository: context.read<AuthenticationRepository>(),
-            userRepository: sl<UserRepository>()
-          )..add(AuthenticationSubscriptionRequested()),
-          child: const AppView(),
-        )
+    return BlocProvider(
+      create: (context) => AuthenticationBloc(
+        authenticationRepository: sl<AuthenticationRepository>(),
+        userRepository: sl<UserRepository>(),
+      )..add(AuthenticationSubscriptionRequested()),
+      child: const AppView(),
     );
   }
 }
@@ -79,7 +71,6 @@ class _AppViewState extends State<AppView> {
               name: 'register',
               builder: (_, _) => const RegisterScreen(),
             ),
-
           ],
         ),
         ShellRoute(
@@ -91,61 +82,64 @@ class _AppViewState extends State<AppView> {
             GoRoute(
               path: '/chats',
               name: 'chats',
-              pageBuilder: (context, state) => NoTransitionPage(child: ChatsScreen(key: state.pageKey)),
+              pageBuilder: (context, state) =>
+                  NoTransitionPage(child: ChatsScreen(key: state.pageKey)),
               routes: [
                 GoRoute(
-                    path: '/chat/:chatRoomId',
-                    name: 'chatRoom',
-                    builder: (context, state) {
-                      final id = state.pathParameters['chatRoomId']!;
-                      return ChatRoomScreen(chatRoomId: id);
-                    }
+                  path: '/chat/:chatRoomId',
+                  name: 'chatRoom',
+                  builder: (context, state) {
+                    final id = state.pathParameters['chatRoomId']!;
+                    return ChatRoomScreen(chatRoomId: id);
+                  },
                 ),
                 GoRoute(
-                    path: '/new_chat',
-                    name: 'newChat',
-                    builder: (context, state) {
-                      return NewChatScreen();
-                    }
+                  path: '/new_chat',
+                  name: 'newChat',
+                  builder: (context, state) {
+                    return NewChatScreen();
+                  },
                 ),
-              ]
+              ],
             ),
             GoRoute(
-                path: '/contacts',
-                name: 'contact',
-                pageBuilder: (context, state) => NoTransitionPage(child: ContactsScreen(key: state.pageKey))
+              path: '/contacts',
+              name: 'contact',
+              pageBuilder: (context, state) =>
+                  NoTransitionPage(child: ContactsScreen(key: state.pageKey)),
             ),
             GoRoute(
-                path: '/profile',
-                name: 'profile',
-                pageBuilder: (context, state) => NoTransitionPage(child: ProfileScreen(key: state.pageKey))
-            )
-          ]
+              path: '/profile',
+              name: 'profile',
+              pageBuilder: (context, state) =>
+                  NoTransitionPage(child: ProfileScreen(key: state.pageKey)),
+            ),
+          ],
         ),
       ],
 
-        redirect: (context, state) {
-          final authStatus = authBloc.state.status;
-          final String path = state.matchedLocation;
-          final List<String> unauthenticatedRoutes = ['/login', '/register'];
+      redirect: (context, state) {
+        final authStatus = authBloc.state.status;
+        final String path = state.matchedLocation;
+        final List<String> unauthenticatedRoutes = ['/login', '/register'];
 
-          switch(authStatus) {
-            case AuthenticationStatus.unknown:
-              return '/';
-            case AuthenticationStatus.authenticated:
-              if (path.startsWith('/chats') ||
-                  path.startsWith('/contacts') ||
-                  path.startsWith('/profile') ||
-                  path.startsWith('/chat/')) {
-                return null;
-              }
-              return '/chats';
-            case AuthenticationStatus.unauthenticated:
-              if(unauthenticatedRoutes.contains(state.uri.toString())) return null;
-              return '/login';
-
-          }
-        },
+        switch (authStatus) {
+          case AuthenticationStatus.unknown:
+            return '/';
+          case AuthenticationStatus.authenticated:
+            if (path.startsWith('/chats') ||
+                path.startsWith('/contacts') ||
+                path.startsWith('/profile') ||
+                path.startsWith('/chat/')) {
+              return null;
+            }
+            return '/chats';
+          case AuthenticationStatus.unauthenticated:
+            if (unauthenticatedRoutes.contains(state.uri.toString()))
+              return null;
+            return '/login';
+        }
+      },
       refreshListenable: GoRouterRefreshStream(
         context.read<AuthenticationBloc>().stream,
       ),
@@ -153,7 +147,7 @@ class _AppViewState extends State<AppView> {
 
     return MaterialApp.router(
       routerConfig: router,
-      debugShowCheckedModeBanner: false
+      debugShowCheckedModeBanner: false,
     );
   }
 }

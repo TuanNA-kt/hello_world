@@ -1,4 +1,5 @@
 import 'package:api_client/rest_client.dart';
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,6 +37,11 @@ Future<void> setupDependencies() async {
   );
 
   sl.registerLazySingleton<ChatRemoteDataSource>(() => ChatRemoteDataSource());
+
+  sl.registerLazySingleton<AuthenticationRepository>(
+        () => AuthenticationRepository(
+    ),
+  );
 
   sl.registerLazySingleton<ChatRepository>(
     () => ChatRepository(

@@ -17,7 +17,7 @@ class RegisterScreen extends StatelessWidget {
         body: SafeArea(
             child: BlocProvider(
                 create: (BuildContext context) => RegisterBloc(
-                    authenticationRepository: context.read<AuthenticationRepository>(), userRepository: sl<UserRepository>()
+                    authenticationRepository: sl<AuthenticationRepository>(), userRepository: sl<UserRepository>()
                 ),
                 child: const RegisterForm()
             )
