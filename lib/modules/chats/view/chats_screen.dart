@@ -22,7 +22,7 @@ class ChatsScreen extends StatelessWidget {
             BlocProvider(
               create: (BuildContext context) => ChatsBloc(
                 chatRepository: sl<ChatRepository>(),
-                currentUserId: context.read<UserRepository>().currentUser.id,
+                currentUserId: sl<UserRepository>().currentUser.id,
               ),
               child: const ChatsView(),
             ),

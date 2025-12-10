@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:chat_repository/chat_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:models/user.dart';
 
@@ -10,24 +11,19 @@ class UserRepository {
   User? _user;
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
-  SharedPreferences? _prefs;
-  final Future<SharedPreferences> _prefsFuture;
+  final SharedPreferences _prefs;
+  final ChatRemoteDataSource _chatRemoteDataSource;
 
   static const userCacheKey = '__user_cache_key__';
 
   UserRepository({
     firebase_auth.FirebaseAuth? firebaseAuth,
-    SharedPreferences? prefs,
-  })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
-        _prefsFuture = prefs != null
-            ? Future.value(prefs)
-            : SharedPreferences.getInstance() {
-    _initPrefs();
-  }
-
-  Future<void> _initPrefs() async {
-    _prefs = await _prefsFuture;
-  }
+    required SharedPreferences prefs,
+    required ChatRemoteDataSource chatRemoteDataSource
+  })
+      : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
+        _prefs = prefs,
+        _chatRemoteDataSource = chatRemoteDataSource;
 
   /// Stream of [User] which will emit the current user when
   /// the authentication state changes.
@@ -44,9 +40,7 @@ class UserRepository {
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   User get currentUser {
-    if (_prefs == null) return User.empty;
-
-    final userJson = _prefs!.getString(userCacheKey);
+    final userJson = _prefs.getString(userCacheKey);
     if (userJson == null) return User.empty;
 
     try {
@@ -59,15 +53,25 @@ class UserRepository {
 
   /// Cache user to SharedPreferences
   Future<void> _cacheUser(User user) async {
-    final prefs = _prefs ?? await _prefsFuture;
     final userJson = jsonEncode(user.toJson());
-    await prefs.setString(userCacheKey, userJson);
+    await _prefs.setString(userCacheKey, userJson);
+  }
+
+  Future<void> writeUserToRTDB(firebase_auth.User user, String fullName) async {
+    final newUser = User(id: user.uid,
+        name: fullName,
+        createdAt: user.metadata.creationTime?.millisecondsSinceEpoch);
+    await _chatRemoteDataSource.createUser(newUser);
   }
 }
 
 extension on firebase_auth.User {
   /// Maps a [firebase_auth.User] into a [User].
   User get toUser {
-    return User(id: uid, email: email, name: displayName ?? 'null', avatarUrl: photoURL, lastSeen: null);
+    return User(id: uid,
+        email: email,
+        name: displayName ?? 'null',
+        avatarUrl: photoURL,
+        lastSeen: null);
   }
 }

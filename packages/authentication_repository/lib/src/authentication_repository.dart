@@ -40,12 +40,13 @@ class AuthenticationRepository {
 
 // You also need to adjust logIn and logOut, as they no longer need to manually add to the controller:
 
-  Future<void> signUp({required String username, required String password}) async {
+  Future<firebase_auth.User?> signUp({required String username, required String password}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+    final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: username,
         password: password,
       );
+      return userCredential.user;
       //_controller.add(AuthenticationStatus.authenticated);
     } on firebase_auth.FirebaseAuthException catch (e) {
       throw SignUpWithEmailAndPasswordFailure.fromCode(e.code);

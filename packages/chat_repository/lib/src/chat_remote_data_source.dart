@@ -111,6 +111,14 @@ class ChatRemoteDataSource {
     return chatRoomId;
   }
 
+  Future<void> createUser(User user) async {
+    final newUserRef = _usersRef.push();
+    final updates = <String, dynamic>{};
+
+    updates['$newUserRef/${user.id}'] = user.toJson();
+    await _firebaseDatabase.ref().update(updates);
+  }
+
   // ============================================================================
   // GỬI TIN NHẮN - ATOMIC MULTI-PATH UPDATE
   // ============================================================================
@@ -184,8 +192,8 @@ class ChatRemoteDataSource {
   Future<List<User>> getAllUsers() async {
     final snapshot = await _usersRef.get();
     final data = snapshot.value as Map<dynamic, dynamic>?;
+    print("DataFriendList: $data");
     if (data == null) return <User>[];
-
     return data.entries.map((entry) {
       final json = Map<String, dynamic>.from(entry.value);
       json['id'] = entry.key;

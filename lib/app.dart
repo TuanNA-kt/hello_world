@@ -1,14 +1,17 @@
 import 'dart:async';
 
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
 import 'package:hello_world/modules/profile/view/profile_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:user_repository/user_repository.dart';
 
+import 'di/injection.dart';
 import 'modules/auth/bloc/authentication_bloc.dart';
 import 'modules/chat_room/view/chat_room_screen.dart';
 import 'modules/home/view/home_screen.dart';
@@ -30,12 +33,11 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
         providers: [
           RepositoryProvider(create: (_) => AuthenticationRepository()),
-          RepositoryProvider(create: (_) => UserRepository())
         ],
         child: BlocProvider(
           create: (context) => AuthenticationBloc(
             authenticationRepository: context.read<AuthenticationRepository>(),
-            userRepository: context.read<UserRepository>()
+            userRepository: sl<UserRepository>()
           )..add(AuthenticationSubscriptionRequested()),
           child: const AppView(),
         )
