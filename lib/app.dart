@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
         providers: [
-          RepositoryProvider(create: (_) => AuthenticationRepository(), dispose: (repo) => repo.dispose()),
+          RepositoryProvider(create: (_) => AuthenticationRepository()),
           RepositoryProvider(create: (_) => UserRepository())
         ],
         child: BlocProvider(
@@ -100,7 +100,7 @@ class _AppViewState extends State<AppView> {
                     }
                 ),
                 GoRoute(
-                    path: '/chat/new_chat',
+                    path: '/new_chat',
                     name: 'newChat',
                     builder: (context, state) {
                       return NewChatScreen();

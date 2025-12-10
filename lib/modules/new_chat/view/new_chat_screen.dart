@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hello_world/common/widgets/app_background.dart';
 import 'package:hello_world/modules/chats/bloc/chats_bloc.dart';
+import 'package:hello_world/modules/new_chat/bloc/new_chat_cubit.dart';
 import 'package:user_repository/user_repository.dart';
 
 import '../../../common/widgets/app_inside_background.dart';
@@ -20,10 +21,9 @@ class NewChatScreen extends StatelessWidget {
           children: [
             AppInsideBackground(),
             BlocProvider(
-              create: (BuildContext context) => ChatsBloc(
-                chatRepository: sl<ChatRepository>(),
-                currentUserId: context.read<UserRepository>().currentUser.id,
-              ),
+              create: (BuildContext context) => NewChatCubit(
+                chatRepository: sl<ChatRepository>()
+              )..loadFriendList(),
               child: const CreateChatView(),
             ),
           ],

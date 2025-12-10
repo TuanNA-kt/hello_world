@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
+import 'package:models/user.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'models/models.dart';
+
 
 class UserRepository {
   User? _user;
@@ -66,6 +68,6 @@ class UserRepository {
 extension on firebase_auth.User {
   /// Maps a [firebase_auth.User] into a [User].
   User get toUser {
-    return User(id: uid, email: email, name: displayName, photo: photoURL);
+    return User(id: uid, email: email, name: displayName ?? 'null', avatarUrl: photoURL, lastSeen: null);
   }
 }

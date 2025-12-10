@@ -1,10 +1,12 @@
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hello_world/modules/new_chat/bloc/new_chat_state.dart';
+import 'package:logger/logger.dart';
 import 'package:models/user.dart';
 
 class NewChatCubit extends Cubit<NewChatState> {
   final ChatRepository _chatRepository;
+  var logger = Logger(output: ConsoleOutput());
 
   NewChatCubit({required ChatRepository chatRepository}) : _chatRepository = chatRepository, super(const NewChatState());
 
@@ -13,6 +15,7 @@ class NewChatCubit extends Cubit<NewChatState> {
 
     try {
       final friendList = await _chatRepository.getAllUsers();
+      logger.i("List friend: $friendList");
       emit(state.copyWith(
         status: NewChatStatus.success,
         friendList: friendList

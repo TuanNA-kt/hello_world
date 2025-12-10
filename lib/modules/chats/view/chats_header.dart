@@ -8,7 +8,7 @@ class ChatsHeader extends StatelessWidget {
   const ChatsHeader({super.key});
 
   void _onPressed(BuildContext context) {
-    context.pushNamed('createChatRoom');
+    context.pushNamed('newChat');
   }
 
   @override

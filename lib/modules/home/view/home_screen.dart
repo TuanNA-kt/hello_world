@@ -28,15 +28,15 @@ class HomeScreen extends StatelessWidget {
         },
         items: [
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/images/ic_chat_enable'),
+            icon: SvgPicture.asset('assets/images/ic_chat_enable.svg'),
             label: "Tin nhắn",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/images/ic_friends_disable'),
+            icon: SvgPicture.asset('assets/images/ic_friends_disable.svg'),
             label: "Bạn bè",
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset('assets/images/ic_profile_disable'),
+            icon: SvgPicture.asset('assets/images/ic_profile_disable.svg'),
             label: "Trang cá nhân",
           ),
         ],
