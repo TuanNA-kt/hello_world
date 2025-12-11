@@ -53,13 +53,14 @@ class UserRepository {
 
   /// Cache user to SharedPreferences
   Future<void> _cacheUser(User user) async {
-    final userJson = jsonEncode(user.toJson());
-    await _prefs.setString(userCacheKey, userJson);
+    final userJson = await _chatRemoteDataSource.getUser(user.id);
+    if(userJson != null) await _prefs.setString(userCacheKey, jsonEncode(userJson));
   }
 
   Future<void> writeUserToRTDB(firebase_auth.User user, String fullName) async {
     final newUser = User(id: user.uid,
         name: fullName,
+        email: user.email,
         createdAt: user.metadata.creationTime?.millisecondsSinceEpoch);
     await _chatRemoteDataSource.createUser(newUser);
   }

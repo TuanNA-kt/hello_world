@@ -46,8 +46,7 @@ class FriendList extends StatelessWidget {
           );
         }
 
-        return Positioned.fill(
-          child: Padding(
+        return Padding(
             padding: const EdgeInsets.only(top: 22.0),
             child: Container(
               decoration: const BoxDecoration(
@@ -71,8 +70,7 @@ class FriendList extends StatelessWidget {
                 },
               ),
             ),
-          ),
-        );
+          );
       },
     );
   }

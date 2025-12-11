@@ -112,10 +112,9 @@ class ChatRemoteDataSource {
   }
 
   Future<void> createUser(User user) async {
-    final newUserRef = _usersRef.push();
     final updates = <String, dynamic>{};
 
-    updates['$newUserRef/${user.id}'] = user.toJson();
+    updates['${_usersRef.path}/${user.id}'] = user.toJson();
     await _firebaseDatabase.ref().update(updates);
   }
 

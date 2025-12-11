@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileOptionTile extends StatelessWidget {
-  final IconData icon;
+  final String assetName;
   final String title;
   final Widget? trailing;
   final bool showArrow;
+  final void Function() onTap;
 
   const ProfileOptionTile({
     super.key,
-    required this.icon,
+    required this.assetName,
     required this.title,
+    required this.onTap,
     this.trailing,
-    this.showArrow = false,
+    this.showArrow = false
   });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, color: Colors.grey[700]),
+      leading: SvgPicture.asset(assetName),
       title: Text(title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (trailing != null) trailing!,
-          if (showArrow) const Icon(Icons.chevron_right),
+          if (showArrow) SvgPicture.asset('assets/images/ic_next.svg'),
         ],
       ),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 }

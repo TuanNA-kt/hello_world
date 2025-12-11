@@ -15,7 +15,12 @@ class ProfileCubit extends Cubit<ProfileState> {
         _authenticationRepository = authenticationRepository,
         super(ProfileState());
 
-  User get currentUser => _userRepository.currentUser;
+  User get _currentUser => _userRepository.currentUser;
+
+  void updateUserProfile() {
+    emit(state.copyWith(user: _currentUser));
+    print(_currentUser);
+  }
 
   Future<void> logOut() async {
     emit(state.copyWith(isLoading: true));
