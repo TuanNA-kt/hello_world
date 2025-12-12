@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
-import 'package:hello_world/modules/profile/view/profile_screen.dart';
+
 import 'package:user_repository/user_repository.dart';
 
 import 'di/injection.dart';
@@ -15,6 +15,8 @@ import 'modules/chat_room/view/chat_room_screen.dart';
 import 'modules/home/view/home_screen.dart';
 import 'modules/login/view/login_screen.dart';
 import 'modules/new_chat/view/new_chat_screen.dart';
+import 'modules/profile/profile/view/profile_screen.dart';
+import 'modules/profile/profile_edit/view/profile_edit_screen.dart';
 import 'modules/register/view/register_screen.dart';
 import 'modules/splash/splash_screen.dart';
 
@@ -115,6 +117,13 @@ class _AppViewState extends State<AppView> {
                   NoTransitionPage(child: ProfileScreen(key: state.pageKey)),
             ),
           ],
+        ),
+        GoRoute(
+          path: '/profile_edit',
+          name: 'profileEdit',
+          builder: (context, state) {
+            return ProfileEditScreen();
+          },
         ),
       ],
 

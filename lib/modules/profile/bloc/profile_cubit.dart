@@ -1,7 +1,10 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
+import 'package:hello_world/common/models/models.dart';
 import 'package:hello_world/modules/profile/bloc/profile_state.dart';
+import 'package:hello_world/modules/register/model/fullname.dart';
 import 'package:models/user.dart';
 import 'package:user_repository/user_repository.dart' hide User;
 
@@ -25,5 +28,21 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> logOut() async {
     emit(state.copyWith(isLoading: true));
     await _authenticationRepository.logOut();
+  }
+
+  void onFullNameChanged(String inputFullname) {
+    final fullname = Fullname.dirty(inputFullname);
+    emit(state.copyWith(
+      fullNameForm: fullname,
+      isValid: Formz.validate([state.phoneNumberForm, fullname])
+    ));
+  }
+
+  void onPhoneNumberChanged(String inputPhoneNumber) {
+    final phoneNumber = PhoneNumber.dirty(inputPhoneNumber);
+    emit(state.copyWith(
+        phoneNumberForm: phoneNumber,
+        isValid: Formz.validate([state.fullNameForm, phoneNumber])
+    ));
   }
 }

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String get id; String get name; String? get email; String? get avatarUrl; int? get lastSeen; String? get fcmToken; int? get createdAt;
+ String get id; String get name; String? get email; String? get avatarUrl; String? get phoneNumber; int? get birthday; int? get lastSeen; String? get fcmToken; int? get createdAt;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $UserCopyWith<User> get copyWith => _$UserCopyWithImpl<User>(this as User, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.lastSeen, lastSeen) || other.lastSeen == lastSeen)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is User&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.lastSeen, lastSeen) || other.lastSeen == lastSeen)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,email,avatarUrl,lastSeen,fcmToken,createdAt);
+int get hashCode => Object.hash(runtimeType,id,name,email,avatarUrl,phoneNumber,birthday,lastSeen,fcmToken,createdAt);
 
 @override
 String toString() {
-  return 'User(id: $id, name: $name, email: $email, avatarUrl: $avatarUrl, lastSeen: $lastSeen, fcmToken: $fcmToken, createdAt: $createdAt)';
+  return 'User(id: $id, name: $name, email: $email, avatarUrl: $avatarUrl, phoneNumber: $phoneNumber, birthday: $birthday, lastSeen: $lastSeen, fcmToken: $fcmToken, createdAt: $createdAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? email, String? avatarUrl, int? lastSeen, String? fcmToken, int? createdAt
+ String id, String name, String? email, String? avatarUrl, String? phoneNumber, int? birthday, int? lastSeen, String? fcmToken, int? createdAt
 });
 
 
@@ -65,13 +65,15 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? lastSeen = freezed,Object? fcmToken = freezed,Object? createdAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? phoneNumber = freezed,Object? birthday = freezed,Object? lastSeen = freezed,Object? fcmToken = freezed,Object? createdAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,lastSeen: freezed == lastSeen ? _self.lastSeen : lastSeen // ignore: cast_nullable_to_non_nullable
+as String?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as String?,birthday: freezed == birthday ? _self.birthday : birthday // ignore: cast_nullable_to_non_nullable
+as int?,lastSeen: freezed == lastSeen ? _self.lastSeen : lastSeen // ignore: cast_nullable_to_non_nullable
 as int?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as int?,
@@ -159,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  int? lastSeen,  String? fcmToken,  int? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  String? phoneNumber,  int? birthday,  int? lastSeen,  String? fcmToken,  int? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
+return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumber,_that.birthday,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
   return orElse();
 
 }
@@ -180,10 +182,10 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.lastSeen,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  int? lastSeen,  String? fcmToken,  int? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? email,  String? avatarUrl,  String? phoneNumber,  int? birthday,  int? lastSeen,  String? fcmToken,  int? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _User():
-return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
+return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumber,_that.birthday,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +202,10 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.lastSeen,_
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? email,  String? avatarUrl,  int? lastSeen,  String? fcmToken,  int? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? email,  String? avatarUrl,  String? phoneNumber,  int? birthday,  int? lastSeen,  String? fcmToken,  int? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
-return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
+return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumber,_that.birthday,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
   return null;
 
 }
@@ -215,13 +217,15 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.lastSeen,_
 @JsonSerializable()
 
 class _User implements User {
-  const _User({required this.id, required this.name, this.email, this.avatarUrl, this.lastSeen, this.fcmToken, this.createdAt});
+  const _User({required this.id, required this.name, this.email, this.avatarUrl, this.phoneNumber, this.birthday, this.lastSeen, this.fcmToken, this.createdAt});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  String id;
 @override final  String name;
 @override final  String? email;
 @override final  String? avatarUrl;
+@override final  String? phoneNumber;
+@override final  int? birthday;
 @override final  int? lastSeen;
 @override final  String? fcmToken;
 @override final  int? createdAt;
@@ -239,16 +243,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.lastSeen, lastSeen) || other.lastSeen == lastSeen)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _User&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.email, email) || other.email == email)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.phoneNumber, phoneNumber) || other.phoneNumber == phoneNumber)&&(identical(other.birthday, birthday) || other.birthday == birthday)&&(identical(other.lastSeen, lastSeen) || other.lastSeen == lastSeen)&&(identical(other.fcmToken, fcmToken) || other.fcmToken == fcmToken)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,email,avatarUrl,lastSeen,fcmToken,createdAt);
+int get hashCode => Object.hash(runtimeType,id,name,email,avatarUrl,phoneNumber,birthday,lastSeen,fcmToken,createdAt);
 
 @override
 String toString() {
-  return 'User(id: $id, name: $name, email: $email, avatarUrl: $avatarUrl, lastSeen: $lastSeen, fcmToken: $fcmToken, createdAt: $createdAt)';
+  return 'User(id: $id, name: $name, email: $email, avatarUrl: $avatarUrl, phoneNumber: $phoneNumber, birthday: $birthday, lastSeen: $lastSeen, fcmToken: $fcmToken, createdAt: $createdAt)';
 }
 
 
@@ -259,7 +263,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? email, String? avatarUrl, int? lastSeen, String? fcmToken, int? createdAt
+ String id, String name, String? email, String? avatarUrl, String? phoneNumber, int? birthday, int? lastSeen, String? fcmToken, int? createdAt
 });
 
 
@@ -276,13 +280,15 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? lastSeen = freezed,Object? fcmToken = freezed,Object? createdAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? email = freezed,Object? avatarUrl = freezed,Object? phoneNumber = freezed,Object? birthday = freezed,Object? lastSeen = freezed,Object? fcmToken = freezed,Object? createdAt = freezed,}) {
   return _then(_User(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,avatarUrl: freezed == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
-as String?,lastSeen: freezed == lastSeen ? _self.lastSeen : lastSeen // ignore: cast_nullable_to_non_nullable
+as String?,phoneNumber: freezed == phoneNumber ? _self.phoneNumber : phoneNumber // ignore: cast_nullable_to_non_nullable
+as String?,birthday: freezed == birthday ? _self.birthday : birthday // ignore: cast_nullable_to_non_nullable
+as int?,lastSeen: freezed == lastSeen ? _self.lastSeen : lastSeen // ignore: cast_nullable_to_non_nullable
 as int?,fcmToken: freezed == fcmToken ? _self.fcmToken : fcmToken // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as int?,

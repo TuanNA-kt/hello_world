@@ -14,7 +14,7 @@ class ProfileOptionTile extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.trailing,
-    this.showArrow = false
+    this.showArrow = false,
   });
 
   @override
@@ -25,6 +25,7 @@ class ProfileOptionTile extends StatelessWidget {
       title: Text(title),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
+        spacing: 12,
         children: [
           if (trailing != null) trailing!,
           if (showArrow) SvgPicture.asset('assets/images/ic_next.svg'),

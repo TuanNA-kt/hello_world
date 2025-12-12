@@ -9,7 +9,10 @@ part 'user.g.dart';
 abstract class User with _$User {
   const factory User({required String id,
     required String name,
-    String? email, String? avatarUrl,
+    String? email,
+    String? avatarUrl,
+    String? phoneNumber,
+    int? birthday,
     int? lastSeen,
     String? fcmToken,
     int? createdAt}) = _User;

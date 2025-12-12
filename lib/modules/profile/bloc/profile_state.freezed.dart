@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileState {
 
- String get language; String get appVersion; User get user; bool get isLoading; bool get isSaving; bool get isSuccess;
+ String get language; String get appVersion; User get user; Fullname get fullNameForm; PhoneNumber get phoneNumberForm; DateTime? get birthDayForm; bool get isValid; bool get isLoading; bool get isSaving; bool get isSuccess;
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ProfileStateCopyWith<ProfileState> get copyWith => _$ProfileStateCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.language, language) || other.language == language)&&(identical(other.appVersion, appVersion) || other.appVersion == appVersion)&&(identical(other.user, user) || other.user == user)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSaving, isSaving) || other.isSaving == isSaving)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.language, language) || other.language == language)&&(identical(other.appVersion, appVersion) || other.appVersion == appVersion)&&(identical(other.user, user) || other.user == user)&&(identical(other.fullNameForm, fullNameForm) || other.fullNameForm == fullNameForm)&&(identical(other.phoneNumberForm, phoneNumberForm) || other.phoneNumberForm == phoneNumberForm)&&(identical(other.birthDayForm, birthDayForm) || other.birthDayForm == birthDayForm)&&(identical(other.isValid, isValid) || other.isValid == isValid)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSaving, isSaving) || other.isSaving == isSaving)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,language,appVersion,user,isLoading,isSaving,isSuccess);
+int get hashCode => Object.hash(runtimeType,language,appVersion,user,fullNameForm,phoneNumberForm,birthDayForm,isValid,isLoading,isSaving,isSuccess);
 
 @override
 String toString() {
-  return 'ProfileState(language: $language, appVersion: $appVersion, user: $user, isLoading: $isLoading, isSaving: $isSaving, isSuccess: $isSuccess)';
+  return 'ProfileState(language: $language, appVersion: $appVersion, user: $user, fullNameForm: $fullNameForm, phoneNumberForm: $phoneNumberForm, birthDayForm: $birthDayForm, isValid: $isValid, isLoading: $isLoading, isSaving: $isSaving, isSuccess: $isSuccess)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ProfileStateCopyWith<$Res>  {
   factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) _then) = _$ProfileStateCopyWithImpl;
 @useResult
 $Res call({
- String language, String appVersion, User user, bool isLoading, bool isSaving, bool isSuccess
+ String language, String appVersion, User user, Fullname fullNameForm, PhoneNumber phoneNumberForm, DateTime? birthDayForm, bool isValid, bool isLoading, bool isSaving, bool isSuccess
 });
 
 
@@ -62,12 +62,16 @@ class _$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? appVersion = null,Object? user = null,Object? isLoading = null,Object? isSaving = null,Object? isSuccess = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? language = null,Object? appVersion = null,Object? user = null,Object? fullNameForm = null,Object? phoneNumberForm = null,Object? birthDayForm = freezed,Object? isValid = null,Object? isLoading = null,Object? isSaving = null,Object? isSuccess = null,}) {
   return _then(_self.copyWith(
 language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as String,appVersion: null == appVersion ? _self.appVersion : appVersion // ignore: cast_nullable_to_non_nullable
 as String,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as User,fullNameForm: null == fullNameForm ? _self.fullNameForm : fullNameForm // ignore: cast_nullable_to_non_nullable
+as Fullname,phoneNumberForm: null == phoneNumberForm ? _self.phoneNumberForm : phoneNumberForm // ignore: cast_nullable_to_non_nullable
+as PhoneNumber,birthDayForm: freezed == birthDayForm ? _self.birthDayForm : birthDayForm // ignore: cast_nullable_to_non_nullable
+as DateTime?,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
+as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isSaving: null == isSaving ? _self.isSaving : isSaving // ignore: cast_nullable_to_non_nullable
 as bool,isSuccess: null == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -164,10 +168,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String language,  String appVersion,  User user,  bool isLoading,  bool isSaving,  bool isSuccess)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String language,  String appVersion,  User user,  Fullname fullNameForm,  PhoneNumber phoneNumberForm,  DateTime? birthDayForm,  bool isValid,  bool isLoading,  bool isSaving,  bool isSuccess)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
-return $default(_that.language,_that.appVersion,_that.user,_that.isLoading,_that.isSaving,_that.isSuccess);case _:
+return $default(_that.language,_that.appVersion,_that.user,_that.fullNameForm,_that.phoneNumberForm,_that.birthDayForm,_that.isValid,_that.isLoading,_that.isSaving,_that.isSuccess);case _:
   return orElse();
 
 }
@@ -185,10 +189,10 @@ return $default(_that.language,_that.appVersion,_that.user,_that.isLoading,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String language,  String appVersion,  User user,  bool isLoading,  bool isSaving,  bool isSuccess)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String language,  String appVersion,  User user,  Fullname fullNameForm,  PhoneNumber phoneNumberForm,  DateTime? birthDayForm,  bool isValid,  bool isLoading,  bool isSaving,  bool isSuccess)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState():
-return $default(_that.language,_that.appVersion,_that.user,_that.isLoading,_that.isSaving,_that.isSuccess);case _:
+return $default(_that.language,_that.appVersion,_that.user,_that.fullNameForm,_that.phoneNumberForm,_that.birthDayForm,_that.isValid,_that.isLoading,_that.isSaving,_that.isSuccess);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +209,10 @@ return $default(_that.language,_that.appVersion,_that.user,_that.isLoading,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String language,  String appVersion,  User user,  bool isLoading,  bool isSaving,  bool isSuccess)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String language,  String appVersion,  User user,  Fullname fullNameForm,  PhoneNumber phoneNumberForm,  DateTime? birthDayForm,  bool isValid,  bool isLoading,  bool isSaving,  bool isSuccess)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
-return $default(_that.language,_that.appVersion,_that.user,_that.isLoading,_that.isSaving,_that.isSuccess);case _:
+return $default(_that.language,_that.appVersion,_that.user,_that.fullNameForm,_that.phoneNumberForm,_that.birthDayForm,_that.isValid,_that.isLoading,_that.isSaving,_that.isSuccess);case _:
   return null;
 
 }
@@ -220,12 +224,16 @@ return $default(_that.language,_that.appVersion,_that.user,_that.isLoading,_that
 
 
 class _ProfileState implements ProfileState {
-  const _ProfileState({this.language = '', this.appVersion = '1.0.0', this.user = User.empty, this.isLoading = false, this.isSaving = false, this.isSuccess = false});
+  const _ProfileState({this.language = '', this.appVersion = '1.0.0', this.user = User.empty, this.fullNameForm = const Fullname.pure(), this.phoneNumberForm = const PhoneNumber.pure(), this.birthDayForm, this.isValid = false, this.isLoading = false, this.isSaving = false, this.isSuccess = false});
   
 
 @override@JsonKey() final  String language;
 @override@JsonKey() final  String appVersion;
 @override@JsonKey() final  User user;
+@override@JsonKey() final  Fullname fullNameForm;
+@override@JsonKey() final  PhoneNumber phoneNumberForm;
+@override final  DateTime? birthDayForm;
+@override@JsonKey() final  bool isValid;
 @override@JsonKey() final  bool isLoading;
 @override@JsonKey() final  bool isSaving;
 @override@JsonKey() final  bool isSuccess;
@@ -240,16 +248,16 @@ _$ProfileStateCopyWith<_ProfileState> get copyWith => __$ProfileStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.language, language) || other.language == language)&&(identical(other.appVersion, appVersion) || other.appVersion == appVersion)&&(identical(other.user, user) || other.user == user)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSaving, isSaving) || other.isSaving == isSaving)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.language, language) || other.language == language)&&(identical(other.appVersion, appVersion) || other.appVersion == appVersion)&&(identical(other.user, user) || other.user == user)&&(identical(other.fullNameForm, fullNameForm) || other.fullNameForm == fullNameForm)&&(identical(other.phoneNumberForm, phoneNumberForm) || other.phoneNumberForm == phoneNumberForm)&&(identical(other.birthDayForm, birthDayForm) || other.birthDayForm == birthDayForm)&&(identical(other.isValid, isValid) || other.isValid == isValid)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.isSaving, isSaving) || other.isSaving == isSaving)&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,language,appVersion,user,isLoading,isSaving,isSuccess);
+int get hashCode => Object.hash(runtimeType,language,appVersion,user,fullNameForm,phoneNumberForm,birthDayForm,isValid,isLoading,isSaving,isSuccess);
 
 @override
 String toString() {
-  return 'ProfileState(language: $language, appVersion: $appVersion, user: $user, isLoading: $isLoading, isSaving: $isSaving, isSuccess: $isSuccess)';
+  return 'ProfileState(language: $language, appVersion: $appVersion, user: $user, fullNameForm: $fullNameForm, phoneNumberForm: $phoneNumberForm, birthDayForm: $birthDayForm, isValid: $isValid, isLoading: $isLoading, isSaving: $isSaving, isSuccess: $isSuccess)';
 }
 
 
@@ -260,7 +268,7 @@ abstract mixin class _$ProfileStateCopyWith<$Res> implements $ProfileStateCopyWi
   factory _$ProfileStateCopyWith(_ProfileState value, $Res Function(_ProfileState) _then) = __$ProfileStateCopyWithImpl;
 @override @useResult
 $Res call({
- String language, String appVersion, User user, bool isLoading, bool isSaving, bool isSuccess
+ String language, String appVersion, User user, Fullname fullNameForm, PhoneNumber phoneNumberForm, DateTime? birthDayForm, bool isValid, bool isLoading, bool isSaving, bool isSuccess
 });
 
 
@@ -277,12 +285,16 @@ class __$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? appVersion = null,Object? user = null,Object? isLoading = null,Object? isSaving = null,Object? isSuccess = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? language = null,Object? appVersion = null,Object? user = null,Object? fullNameForm = null,Object? phoneNumberForm = null,Object? birthDayForm = freezed,Object? isValid = null,Object? isLoading = null,Object? isSaving = null,Object? isSuccess = null,}) {
   return _then(_ProfileState(
 language: null == language ? _self.language : language // ignore: cast_nullable_to_non_nullable
 as String,appVersion: null == appVersion ? _self.appVersion : appVersion // ignore: cast_nullable_to_non_nullable
 as String,user: null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as User,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
+as User,fullNameForm: null == fullNameForm ? _self.fullNameForm : fullNameForm // ignore: cast_nullable_to_non_nullable
+as Fullname,phoneNumberForm: null == phoneNumberForm ? _self.phoneNumberForm : phoneNumberForm // ignore: cast_nullable_to_non_nullable
+as PhoneNumber,birthDayForm: freezed == birthDayForm ? _self.birthDayForm : birthDayForm // ignore: cast_nullable_to_non_nullable
+as DateTime?,isValid: null == isValid ? _self.isValid : isValid // ignore: cast_nullable_to_non_nullable
+as bool,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
 as bool,isSaving: null == isSaving ? _self.isSaving : isSaving // ignore: cast_nullable_to_non_nullable
 as bool,isSuccess: null == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
 as bool,

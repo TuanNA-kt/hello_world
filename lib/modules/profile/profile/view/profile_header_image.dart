@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hello_world/common/widgets/app_background.dart';
 import 'package:hello_world/modules/profile/bloc/profile_cubit.dart';
 
-import '../bloc/profile_state.dart';
+import '../../bloc/profile_state.dart';
+
 
 class ProfileHeaderImage extends StatelessWidget {
   final double height;

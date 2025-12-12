@@ -53,5 +53,4 @@ class HomeScreen extends StatelessWidget {
     if (location.startsWith('/profile')) return 2;
     return 0;
   }
-
 }
