@@ -25,6 +25,16 @@ class ProfileCubit extends Cubit<ProfileState> {
     print(_currentUser);
   }
 
+  Future<void> saveNewUserProfile() async {
+    final newUser = state.user.copyWith(
+      name: state.fullNameForm.value,
+      phoneNumber: state.phoneNumberForm.value,
+      birthday: state.birthDayForm?.millisecondsSinceEpoch
+    );
+    await _userRepository.updateUserToRTDB(newUser);
+    emit(state.copyWith(user: _currentUser));
+  }
+
   Future<void> logOut() async {
     emit(state.copyWith(isLoading: true));
     await _authenticationRepository.logOut();
@@ -44,5 +54,9 @@ class ProfileCubit extends Cubit<ProfileState> {
         phoneNumberForm: phoneNumber,
         isValid: Formz.validate([state.fullNameForm, phoneNumber])
     ));
+  }
+
+  void onBirthdayChanged(DateTime date) {
+    emit(state.copyWith(birthDayForm: date));
   }
 }

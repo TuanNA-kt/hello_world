@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
-
+import 'package:hello_world/modules/profile/bloc/profile_cubit.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'di/injection.dart';
@@ -29,11 +29,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthenticationBloc(
-        authenticationRepository: sl<AuthenticationRepository>(),
-        userRepository: sl<UserRepository>(),
-      )..add(AuthenticationSubscriptionRequested()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthenticationBloc(
+            authenticationRepository: sl<AuthenticationRepository>(),
+            userRepository: sl<UserRepository>(),
+          )..add(AuthenticationSubscriptionRequested()),
+        ),
+        BlocProvider(
+          create: (context) => ProfileCubit(
+            authenticationRepository: sl<AuthenticationRepository>(),
+            userRepository: sl<UserRepository>(),
+          ),
+        ),
+      ],
       child: const AppView(),
     );
   }

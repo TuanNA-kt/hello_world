@@ -38,14 +38,14 @@ class ProfileEditAvatar extends StatelessWidget {
           child: GestureDetector(
             onTap: () {},
             child: Container(
-              width: 45,
-              height: 45,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 color: AppColors.primaryBlue,
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.white, width: 3),
               ),
-              child: SvgPicture.asset(AppIcon.iconCamera)
+             child: SvgPicture.asset(AppIcon.iconCamera, fit: BoxFit.scaleDown)
             ),
           ),
         ),

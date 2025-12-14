@@ -20,12 +20,7 @@ class ProfileEditScreen extends StatelessWidget {
         body: SafeArea(child: Stack(
           children: [
             const AppInsideBackground(),
-            BlocProvider(
-                create: (BuildContext context) =>
-                    ProfileCubit(userRepository: sl<UserRepository>(),
-                        authenticationRepository: sl<AuthenticationRepository>()),
-                    child: const ProfileEditView()
-            )
+            const ProfileEditView()
           ],
         ))
     );

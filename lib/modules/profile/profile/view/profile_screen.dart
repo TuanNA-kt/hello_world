@@ -18,13 +18,7 @@ class ProfileScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            BlocProvider(
-              create: (BuildContext context) =>
-                  ProfileCubit(
-                      userRepository: sl<UserRepository>(), authenticationRepository: sl<AuthenticationRepository>()
-                  ),
-              child: const ProfileView(),
-            ),
+            const ProfileView()
           ],
         ),
       ),

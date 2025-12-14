@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/modules/profile/profile_edit/view/profile_edit_card.dart';
 import 'package:hello_world/modules/profile/profile_edit/view/profile_edit_header.dart';
 
 class ProfileEditView extends StatelessWidget {
@@ -11,7 +12,9 @@ class ProfileEditView extends StatelessWidget {
         const SizedBox(height: 40),
         const ProfileEditHeader(),
         const SizedBox(height: 58),
-        const ProfileEditCard(),
+        Expanded(
+          child: const ProfileEditCard()
+        ),
       ],
     );
   }

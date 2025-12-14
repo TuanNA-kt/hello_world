@@ -213,6 +213,51 @@ class ChatRemoteDataSource {
         .update({'last_read_timestamp': now});
   }
 
+  Future<void> updateUserProfileByUser(User user) async {
+    final updates = <String, dynamic>{};
+
+    // Update user node
+    final userPath = '${_usersRef.path}/${user.id}';
+    updates[userPath] = user.toJson();
+
+    await _firebaseDatabase.ref().update(updates);
+  }
+
+  Future<void> updateUserProfile({
+    required String userId,
+    String? fullName,
+    String? phoneNumber,
+    int? birthday,
+  }) async {
+    final updates = <String, dynamic>{};
+
+    if (fullName != null) {
+      updates['name'] = fullName;
+    }
+
+    if (phoneNumber != null) {
+      updates['phone_number'] = phoneNumber;
+    }
+
+    if (birthday != null) {
+      updates['birthday'] = birthday;
+    }
+
+    // Chỉ update nếu có ít nhất 1 field thay đổi
+    if (updates.isNotEmpty) {
+      await _usersRef.child(userId).update(updates);
+    }
+  }
+
+  // ============================================================================
+// CẬP NHẬT AVATAR USER
+// ============================================================================
+  Future<void> updateUserAvatar(String userId, String avatarUrl) async {
+    await _usersRef.child(userId).update({
+      'avatar_url': avatarUrl,
+    });
+  }
+
   // ============================================================================
   // PRIVATE HELPER METHODS - XÂY DỰNG ATOMIC UPDATES
   // ============================================================================

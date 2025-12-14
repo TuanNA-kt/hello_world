@@ -5,15 +5,17 @@ import '../app_colors.dart';
 
 enum TextFieldType { name, mail, password, phone, birthday }
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String label;
   final String hint;
   final String iconPath;
   final String? errorText;
   final void Function(String)? onChanged;
-  final void Function(DateTime)? onDateChanged; // Add this
-  final DateTime? initialDate; // Add this
+  final void Function(DateTime)? onDateChanged;
+  final DateTime? initialDate;
+  final String? initialText;
   final TextFieldType type;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
@@ -22,15 +24,55 @@ class CustomTextField extends StatelessWidget {
     required this.iconPath,
     this.errorText,
     this.onChanged,
-    this.onDateChanged, // Add this
-    this.initialDate, // Add this
+    this.onDateChanged,
+    this.initialDate,
+    this.initialText,
     required this.type,
+    this.controller,
   });
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  late final TextEditingController _internalController;
+  late final bool _isControllerExternal;
+
+  @override
+  void initState() {
+    super.initState();
+    _isControllerExternal = widget.controller != null;
+
+    if (_isControllerExternal) {
+      _internalController = widget.controller!;
+    } else {
+      final initialValue = _getInitialValue();
+      _internalController = TextEditingController(text: initialValue);
+    }
+  }
+
+  @override
+  void dispose() {
+    // Only dispose if we created the controller internally
+    if (!_isControllerExternal) {
+      _internalController.dispose();
+    }
+    super.dispose();
+  }
+
+  String _getInitialValue() {
+    if (widget.type == TextFieldType.birthday && widget.initialDate != null) {
+      return DateFormat('dd/MM/yyyy').format(widget.initialDate!);
+    }
+    return widget.initialText ?? '';
+  }
 
   Future<void> _showDatePicker(BuildContext context) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: initialDate ?? DateTime.now().subtract(Duration(days: 365 * 18)),
+      initialDate: widget.initialDate ??
+          DateTime.now().subtract(const Duration(days: 365 * 18)),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
       builder: (context, child) {
@@ -47,47 +89,63 @@ class CustomTextField extends StatelessWidget {
       },
     );
 
-    if (pickedDate != null && onDateChanged != null) {
-      onDateChanged!(pickedDate);
+    if (pickedDate != null) {
+      final formattedDate = DateFormat('dd/MM/yyyy').format(pickedDate);
+      _internalController.text = formattedDate;
+      widget.onDateChanged?.call(pickedDate);
     }
   }
 
+  bool get _isBirthday => widget.type == TextFieldType.birthday;
+  bool get _isPassword => widget.type == TextFieldType.password;
+
   @override
   Widget build(BuildContext context) {
-    final isBirthday = type == TextFieldType.birthday;
-
-    final String displayText = isBirthday && initialDate != null
-        ? DateFormat('dd/MM/yyyy').format(initialDate!)
-        : '';
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          label.toUpperCase(),
+          widget.label.toUpperCase(),
           style: const TextStyle(color: AppColors.gray),
         ),
+        const SizedBox(height: 4),
         TextFormField(
-          readOnly: isBirthday, // Read-only for birthday
-          obscureText: _isPasswordForm(),
-          onTap: isBirthday ? () => _showDatePicker(context) : null,
-          onChanged: !isBirthday ? onChanged : null,
-          controller: isBirthday ? TextEditingController(text: displayText) : null,
+          controller: _internalController,
+          readOnly: _isBirthday,
+          obscureText: _isPassword,
+          onTap: _isBirthday ? () => _showDatePicker(context) : null,
+          onChanged: !_isBirthday ? widget.onChanged : null,
           style: const TextStyle(fontSize: 18),
+          keyboardType: _getKeyboardType(),
           decoration: InputDecoration(
-            hintText: hint,
+            hintText: widget.hint,
             hintStyle: const TextStyle(color: AppColors.gray),
-            suffixIcon: SizedBox(child: SvgPicture.asset(iconPath)),
-            suffixIconConstraints: const BoxConstraints(
-              maxHeight: 16,
-              maxWidth: 16,
+            suffixIcon: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: SvgPicture.asset(
+                widget.iconPath,
+                width: 16,
+                height: 16,
+              ),
             ),
-            errorText: errorText,
+            errorText: widget.errorText,
+            errorMaxLines: 2,
           ),
         ),
       ],
     );
   }
 
-  bool _isPasswordForm() => type == TextFieldType.password;
+  TextInputType _getKeyboardType() {
+    switch (widget.type) {
+      case TextFieldType.mail:
+        return TextInputType.emailAddress;
+      case TextFieldType.phone:
+        return TextInputType.phone;
+      case TextFieldType.name:
+        return TextInputType.name;
+      default:
+        return TextInputType.text;
+    }
+  }
 }

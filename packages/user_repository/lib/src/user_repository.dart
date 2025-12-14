@@ -64,6 +64,15 @@ class UserRepository {
         createdAt: user.metadata.creationTime?.millisecondsSinceEpoch);
     await _chatRemoteDataSource.createUser(newUser);
   }
+
+  Future<void> updateUserToRTDB(User user) async {
+    await _chatRemoteDataSource.updateUserProfile(
+      userId: user.id,
+      fullName: user.name,
+      phoneNumber: user.phoneNumber,
+      birthday: user.birthday
+    );
+  }
 }
 
 extension on firebase_auth.User {

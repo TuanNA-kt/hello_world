@@ -7,23 +7,30 @@ enum PhoneNumberValidationError {
 }
 
 class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
-  const PhoneNumber.pure([super.initialPhoneNumber =""]) : super.pure();
+  const PhoneNumber.pure([super.initialPhoneNumber = ""]) : super.pure();
   const PhoneNumber.dirty([super.newPhoneNumber = '']) : super.dirty();
 
-  static final RegExp _phoneRegExp = RegExp(r'[^\d]');
+  // Regex để check CHỈ chứa số (và có thể có dấu + ở đầu)
+  static final RegExp _phoneRegExp = RegExp(r'^\+?\d+$');
 
   @override
   PhoneNumberValidationError? validator(String value) {
     final trimmedValue = value.trim();
-    if(trimmedValue.isEmpty) return PhoneNumberValidationError.empty;
-    if(!_phoneRegExp.hasMatch(trimmedValue)) {
+
+    // Check empty
+    if (trimmedValue.isEmpty) return PhoneNumberValidationError.empty;
+
+    // Check chỉ chứa số (và có thể có + ở đầu)
+    if (!_phoneRegExp.hasMatch(trimmedValue)) {
       return PhoneNumberValidationError.containsNonNumeric;
     }
-    if (trimmedValue.length < 9 || trimmedValue.length > 15) {
+
+    // Check length (loại bỏ dấu + khi đếm)
+    final digitsOnly = trimmedValue.replaceAll('+', '');
+    if (digitsOnly.length < 9 || digitsOnly.length > 15) {
       return PhoneNumberValidationError.invalidLength;
     }
+
     return null;
-
   }
-
 }
