@@ -11,13 +11,13 @@ abstract class User with _$User {
     required String name,
     String? email,
     String? avatarUrl,
-    String? phoneNumber,
+    @Default("") String phoneNumber,
     int? birthday,
     int? lastSeen,
     String? fcmToken,
     int? createdAt}) = _User;
 
-  static const empty = User(id: '', name: '');
+  static const empty = User(id: '', name: '', phoneNumber: '');
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

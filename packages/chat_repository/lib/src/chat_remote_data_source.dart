@@ -228,6 +228,7 @@ class ChatRemoteDataSource {
     String? fullName,
     String? phoneNumber,
     int? birthday,
+    String? avatarUrl
   }) async {
     final updates = <String, dynamic>{};
 
@@ -241,6 +242,10 @@ class ChatRemoteDataSource {
 
     if (birthday != null) {
       updates['birthday'] = birthday;
+    }
+
+    if(avatarUrl != null) {
+      updates['avatar_url'] = avatarUrl;
     }
 
     // Chỉ update nếu có ít nhất 1 field thay đổi

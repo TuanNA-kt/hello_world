@@ -17,8 +17,12 @@ class PhoneNumber extends FormzInput<String, PhoneNumberValidationError> {
   PhoneNumberValidationError? validator(String value) {
     final trimmedValue = value.trim();
 
-    // Check empty
-    if (trimmedValue.isEmpty) return PhoneNumberValidationError.empty;
+    if(isPure || value.isEmpty) {
+      return null;
+    }
+
+    // Check empty. But for now, i let it can be null which means user delete this info
+    //if (trimmedValue.isEmpty) return PhoneNumberValidationError.empty;
 
     // Check chỉ chứa số (và có thể có + ở đầu)
     if (!_phoneRegExp.hasMatch(trimmedValue)) {

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hello_world/common/app_colors.dart';
 import 'package:hello_world/common/app_const.dart';
+import 'package:hello_world/modules/auth/bloc/authentication_bloc.dart';
 import 'package:hello_world/modules/profile/bloc/profile_cubit.dart';
 import '../../bloc/profile_state.dart';
 import 'profile_option_tile.dart';
@@ -137,8 +138,10 @@ class ProfileCard extends StatelessWidget {
 
           // Logout
           GestureDetector(
-            onTap: () async {
-              await context.read<ProfileCubit>().logOut();
+            onTap: () {
+              context.read<AuthenticationBloc>().add(
+                AuthenticationLogoutPressed(),
+              );
             },
             child: Row(
               children: [
@@ -158,7 +161,9 @@ class ProfileCard extends StatelessWidget {
       ),
     );
   }
+
   void onEditPressed(BuildContext context) {
+    context.read<ProfileCubit>().resetValidationAndRemoveTempedState();
     context.pushNamed('profileEdit');
   }
 }

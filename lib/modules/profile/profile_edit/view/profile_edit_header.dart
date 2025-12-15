@@ -31,19 +31,25 @@ class ProfileEditHeader extends StatelessWidget {
               const Spacer(),
               BlocBuilder<ProfileCubit, ProfileState>(
                 builder: (BuildContext context, ProfileState state) {
-                  return TextButton(
-                    onPressed: state.isValid ? () {
-                      context.read<ProfileCubit>().saveNewUserProfile();
-                    } : null,
-                    child: const Text(
-                      "Lưu",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.white,
+                  if (state.isLoading) {
+                    return CircularProgressIndicator();
+                  } else {
+                    return TextButton(
+                      onPressed: state.isValid
+                          ? () {
+                              context.read<ProfileCubit>().saveNewUserProfile();
+                            }
+                          : null,
+                      child: Text(
+                        "Lưu",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: state.isValid ? AppColors.white : AppColors.gray,
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 },
               ),
             ],

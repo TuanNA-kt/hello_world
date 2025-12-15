@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hello_world/common/models/avatar_path.dart';
 import 'package:hello_world/modules/profile/profile_edit/view/birthday_input_field.dart';
 import 'package:models/user.dart';
 
@@ -13,9 +14,10 @@ abstract class ProfileState with _$ProfileState {
     @Default('') String language,
     @Default('1.0.0') String appVersion,
     @Default(User.empty) User user,
+    AvatarPath? temporaryAvatarUrl,
     @Default(Fullname.pure()) Fullname fullNameForm,
     @Default(PhoneNumber.pure()) PhoneNumber phoneNumberForm,
-    DateTime? birthDayForm,
+    Birthday? birthDayForm,
     @Default(false) bool isValid,
     @Default(false) bool isLoading,
     @Default(false) bool isSaving,

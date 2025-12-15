@@ -14,6 +14,10 @@ class Username extends FormzInput<String, EmailValidationError>
 
   @override
   EmailValidationError? validator(String value) {
+    if(isPure) {
+      return null;
+    }
+
     return _emailRegExp.hasMatch(value) ? null : EmailValidationError.invalid;
   }
 }

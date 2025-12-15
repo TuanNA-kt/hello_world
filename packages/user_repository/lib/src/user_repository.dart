@@ -31,7 +31,13 @@ class UserRepository {
   /// Emits [User.empty] if the user is not authenticated.
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().asyncMap((firebaseUser) async {
-      final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
+      if (firebaseUser == null) {
+        // User logged out - clear cache
+        await clearCache();
+        return User.empty;
+      }
+
+      final user = firebaseUser.toUser;
       await _cacheUser(user);
       return user;
     });
@@ -70,8 +76,27 @@ class UserRepository {
       userId: user.id,
       fullName: user.name,
       phoneNumber: user.phoneNumber,
-      birthday: user.birthday
+      birthday: user.birthday,
+      avatarUrl: user.avatarUrl
     );
+
+    await _cacheUser(user);
+  }
+
+  Future<void> clearCache() async {
+    await _prefs.remove(userCacheKey);
+    _user = null;
+  }
+
+  Future<void> logOut() async {
+    try {
+      await Future.wait([
+        _firebaseAuth.signOut(),
+        clearCache(),
+      ]);
+    } catch (e) {
+      throw Exception('Failed to log out: $e');
+    }
   }
 }
 
@@ -80,7 +105,8 @@ extension on firebase_auth.User {
   User get toUser {
     return User(id: uid,
         email: email,
-        name: displayName ?? 'null',
+        name: displayName ?? '',
+        phoneNumber: phoneNumber ?? '',
         avatarUrl: photoURL,
         lastSeen: null);
   }

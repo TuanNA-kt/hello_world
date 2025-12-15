@@ -1,4 +1,5 @@
 import 'package:chat_repository/src/chat_remote_data_source.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:models/chat_room.dart';
 import 'package:models/chat_room_display.dart';
 import 'package:models/user.dart';
@@ -8,9 +9,10 @@ import 'package:api_client/rest_client.dart';
 class ChatRepository {
   final ChatRemoteDataSource _remoteDataSource;
   final ApiService _apiService;
+  final ImagePicker _imagePicker;
 
-  ChatRepository({required ChatRemoteDataSource remoteDataSource, required ApiService apiService}) :
-        _remoteDataSource = remoteDataSource, _apiService = apiService;
+  ChatRepository({required ChatRemoteDataSource remoteDataSource, required ApiService apiService, required ImagePicker imagePicker}) :
+        _remoteDataSource = remoteDataSource, _apiService = apiService, _imagePicker = imagePicker;
 
   Stream<List<ChatRoomDisplay>> getChatRooms(String userId) {
     // B1: Get base list from Index (Fast)

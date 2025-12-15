@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,12 +23,36 @@ class ProfileEditAvatar extends StatelessWidget {
           height: 143,
           child: BlocBuilder<ProfileCubit, ProfileState>(
             builder: (BuildContext context, ProfileState state) {
-              return CircleAvatar(
-                  backgroundImage:
-                  (state.user.avatarUrl != null &&
-                      state.user.avatarUrl!.isNotEmpty)
-                      ? NetworkImage(state.user.avatarUrl!)
-                      : NetworkImage(AppConst.defaultAvatarUrl));
+              final String? tempLocalPath = state.temporaryAvatarUrl?.value;
+              final String? networkUrl = state.user.avatarUrl;
+
+              final bool hasLocalImage = tempLocalPath != null && tempLocalPath.isNotEmpty;
+              final bool hasNetworkImage = networkUrl != null && networkUrl.isNotEmpty;
+              ImageProvider? imageProvider;
+
+              if (hasLocalImage) {
+                // Ưu tiên 1: Sử dụng ảnh tạm thời cục bộ (chưa upload)
+                // Dùng FileImage để đọc đường dẫn file cục bộ
+                imageProvider = FileImage(File(tempLocalPath));
+
+              } else if (hasNetworkImage) {
+                // Ưu tiên 2: Sử dụng ảnh đã lưu trên Cloud
+                // Dùng NetworkImage để tải ảnh qua mạng
+                imageProvider = NetworkImage(networkUrl);
+
+              } else {
+                // Ưu tiên 3: Dùng ảnh mặc định (Asset/SVG)
+                // Nếu bạn dùng SVG cho default avatar, bạn không thể dùng nó làm CircleAvatar.backgroundImage
+                // Nếu ảnh default là PNG/JPG trong assets, dùng AssetImage:
+                imageProvider = NetworkImage(AppConst.defaultAvatarUrl);
+              }
+
+              return CircleAvatar(backgroundImage: imageProvider);
+                  // backgroundImage:
+                  // (state.temporaryAvatarUrl != null &&
+                  //     state.temporaryAvatarUrl!.isNotEmpty)
+                  //     ? NetworkImage(state.temporaryAvatarUrl!)
+                  //     : NetworkImage(AppConst.defaultAvatarUrl));
             },
           ),
         ),
@@ -36,7 +62,7 @@ class ProfileEditAvatar extends StatelessWidget {
           right: 0,
           bottom: 0,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () async {await context.read<ProfileCubit>().onAvatarPicked();},
             child: Container(
               width: 40,
               height: 40,

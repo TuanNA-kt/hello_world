@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hello_world/modules/chats/view/chats_screen.dart';
 import 'package:hello_world/modules/contacts/view/contacts_screen.dart';
 import 'package:hello_world/modules/profile/bloc/profile_cubit.dart';
+import 'package:media_repository/media_repository.dart';
 import 'package:user_repository/user_repository.dart';
 
 import 'di/injection.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ProfileCubit(
             authenticationRepository: sl<AuthenticationRepository>(),
             userRepository: sl<UserRepository>(),
+            mediaRepository: sl<MediaRepository>()
           ),
         ),
       ],
