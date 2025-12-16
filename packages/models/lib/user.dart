@@ -10,11 +10,11 @@ abstract class User with _$User {
   const factory User({required String id,
     required String name,
     String? email,
-    String? avatarUrl,
-    @Default("") String phoneNumber,
+    @JsonKey(name: 'avatar_url') String? avatarUrl,
+    @JsonKey(name: 'phone_number') @Default("") String phoneNumber,
     int? birthday,
-    int? lastSeen,
-    String? fcmToken,
+    @JsonKey(name: 'last_seen') int? lastSeen,
+    @JsonKey(name: 'fcm_token') String? fcmToken,
     int? createdAt}) = _User;
 
   static const empty = User(id: '', name: '', phoneNumber: '');

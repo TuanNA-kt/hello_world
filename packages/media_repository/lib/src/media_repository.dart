@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:api_client/rest_client.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:api_client/models.dart';
 
 class MediaRepository {
   final ChatRemoteDataSource _remoteDataSource;
@@ -22,8 +23,17 @@ class MediaRepository {
     return file?.path;
   }
 
-  Future<void> uploadImageToCloud(String filePath) async {
-    await _apiService.uploadImage(imageFile: File(filePath));
+  Future<String> uploadImageToCloud(String filePath) async {
+    try {
+      final UploadResponse response = await _apiService.uploadImage(imageFile: File(filePath));
+      if(response.success == true && response.status == 200) {
+        return response.data.displayUrl;
+      } else {
+        throw Exception('upload image error');
+      }
+    } catch (e) {
+
+    }
   }
 
 }

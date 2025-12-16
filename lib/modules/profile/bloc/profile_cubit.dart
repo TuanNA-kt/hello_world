@@ -41,15 +41,15 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> saveNewUserProfile() async {
     emit(state.copyWith(isLoading: true));
+    if (state.temporaryAvatarUrl?.value != null) {
+      await _mediaRepository.uploadImageToCloud(state.temporaryAvatarUrl!.value!);
+    }
     final newUser = state.user.copyWith(
       name: state.fullNameForm.value,
       phoneNumber: state.phoneNumberForm.value,
       birthday: state.birthDayForm?.value,
       avatarUrl: state.temporaryAvatarUrl?.value,
     );
-    if (newUser.avatarUrl != null) {
-      await _mediaRepository.uploadImageToCloud(newUser.avatarUrl!);
-    }
     await _userRepository.updateUserToRTDB(newUser);
     emit(state.copyWith(user: _currentUser, isLoading: false));
   }
