@@ -23,16 +23,18 @@ class MediaRepository {
     return file?.path;
   }
 
-  Future<String> uploadImageToCloud(String filePath) async {
+  Future<String?> uploadImageToCloud(String filePath) async {
     try {
       final UploadResponse response = await _apiService.uploadImage(imageFile: File(filePath));
+      print("Response: ${response.data}");
       if(response.success == true && response.status == 200) {
-        return response.data.displayUrl;
+        return response.data.url;
       } else {
         throw Exception('upload image error');
       }
     } catch (e) {
-
+      print(e.toString());
+      return null;
     }
   }
 

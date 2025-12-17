@@ -10,11 +10,17 @@ abstract class ChatRoomDisplay with _$ChatRoomDisplay {
   factory ChatRoomDisplay({
     required String id,
     required String name,
+    @JsonKey(name: 'avatar_url')
     required String avatarUrl,
+    @JsonKey(name: 'updated_at')
     int? updatedAt,
-    required String lastMessageText,
+    @JsonKey(name: 'last_message')
+    required String lastMessage,
+    @JsonKey(name: 'sender_id')
     required String senderId,
+    @JsonKey(name: 'unread_count')
     @Default(0) int unreadCount,
+    @JsonKey(name: 'is_typing')
     @Default(false) bool isTyping,
   }) = _ChatRoomDisplay;
 
@@ -26,7 +32,7 @@ abstract class ChatRoomDisplay with _$ChatRoomDisplay {
       name: '',
       avatarUrl: '',
       updatedAt: updatedTimestamp,
-      lastMessageText: json['last_message_text'] as String? ?? '...',
+      lastMessage: json['last_message'] as String? ?? '',
       senderId: json['sender_id'] as String? ?? '',
       unreadCount: 0,
     );

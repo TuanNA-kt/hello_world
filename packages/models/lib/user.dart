@@ -15,7 +15,7 @@ abstract class User with _$User {
     int? birthday,
     @JsonKey(name: 'last_seen') int? lastSeen,
     @JsonKey(name: 'fcm_token') String? fcmToken,
-    int? createdAt}) = _User;
+    @JsonKey(name: 'created_at') int? createdAt}) = _User;
 
   static const empty = User(id: '', name: '', phoneNumber: '');
 

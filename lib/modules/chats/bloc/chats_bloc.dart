@@ -82,7 +82,7 @@ class ChatsBloc extends Bloc<ChatsEvent, ChatsState> {
   ) {
     return chats.where((chat) {
       final nameMatch = chat.name.toLowerCase().contains(query);
-      final messageMatch = chat.lastMessageText.toLowerCase().contains(query);
+      final messageMatch = chat.lastMessage.toLowerCase().contains(query);
       return nameMatch || messageMatch;
     }).toList();
   }

@@ -15,7 +15,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   birthday: (json['birthday'] as num?)?.toInt(),
   lastSeen: (json['last_seen'] as num?)?.toInt(),
   fcmToken: json['fcm_token'] as String?,
-  createdAt: (json['createdAt'] as num?)?.toInt(),
+  createdAt: (json['created_at'] as num?)?.toInt(),
 );
 
 Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
@@ -27,5 +27,5 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'birthday': instance.birthday,
   'last_seen': instance.lastSeen,
   'fcm_token': instance.fcmToken,
-  'createdAt': instance.createdAt,
+  'created_at': instance.createdAt,
 };

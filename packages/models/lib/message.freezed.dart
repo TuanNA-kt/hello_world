@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Message {
 
- String get id; String get chatRoomId; String get senderId; String get content;@MessageTypeConverter() MessageType get type; String? get mediaUrl; int? get timestamp; List<String> get readBy;
+ String get id;@JsonKey(name: 'chat_room_id') String get chatRoomId;@JsonKey(name: 'sender_id') String get senderId; String get content;@JsonKey(name: 'message_type')@MessageTypeConverter() MessageType get type;@JsonKey(name: 'media_url') String? get mediaUrl; int? get timestamp;@JsonKey(name: 'read_by') List<String> get readBy;
 /// Create a copy of Message
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MessageCopyWith<$Res>  {
   factory $MessageCopyWith(Message value, $Res Function(Message) _then) = _$MessageCopyWithImpl;
 @useResult
 $Res call({
- String id, String chatRoomId, String senderId, String content,@MessageTypeConverter() MessageType type, String? mediaUrl, int? timestamp, List<String> readBy
+ String id,@JsonKey(name: 'chat_room_id') String chatRoomId,@JsonKey(name: 'sender_id') String senderId, String content,@JsonKey(name: 'message_type')@MessageTypeConverter() MessageType type,@JsonKey(name: 'media_url') String? mediaUrl, int? timestamp,@JsonKey(name: 'read_by') List<String> readBy
 });
 
 
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  int? timestamp,  List<String> readBy)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'chat_room_id')  String chatRoomId, @JsonKey(name: 'sender_id')  String senderId,  String content, @JsonKey(name: 'message_type')@MessageTypeConverter()  MessageType type, @JsonKey(name: 'media_url')  String? mediaUrl,  int? timestamp, @JsonKey(name: 'read_by')  List<String> readBy)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Message() when $default != null:
 return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.type,_that.mediaUrl,_that.timestamp,_that.readBy);case _:
@@ -181,7 +181,7 @@ return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.typ
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  int? timestamp,  List<String> readBy)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'chat_room_id')  String chatRoomId, @JsonKey(name: 'sender_id')  String senderId,  String content, @JsonKey(name: 'message_type')@MessageTypeConverter()  MessageType type, @JsonKey(name: 'media_url')  String? mediaUrl,  int? timestamp, @JsonKey(name: 'read_by')  List<String> readBy)  $default,) {final _that = this;
 switch (_that) {
 case _Message():
 return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.type,_that.mediaUrl,_that.timestamp,_that.readBy);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.typ
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String chatRoomId,  String senderId,  String content, @MessageTypeConverter()  MessageType type,  String? mediaUrl,  int? timestamp,  List<String> readBy)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'chat_room_id')  String chatRoomId, @JsonKey(name: 'sender_id')  String senderId,  String content, @JsonKey(name: 'message_type')@MessageTypeConverter()  MessageType type, @JsonKey(name: 'media_url')  String? mediaUrl,  int? timestamp, @JsonKey(name: 'read_by')  List<String> readBy)?  $default,) {final _that = this;
 switch (_that) {
 case _Message() when $default != null:
 return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.type,_that.mediaUrl,_that.timestamp,_that.readBy);case _:
@@ -216,18 +216,18 @@ return $default(_that.id,_that.chatRoomId,_that.senderId,_that.content,_that.typ
 @JsonSerializable()
 
 class _Message implements Message {
-   _Message({required this.id, required this.chatRoomId, required this.senderId, required this.content, @MessageTypeConverter() required this.type, this.mediaUrl, this.timestamp, final  List<String> readBy = const []}): _readBy = readBy;
+   _Message({required this.id, @JsonKey(name: 'chat_room_id') required this.chatRoomId, @JsonKey(name: 'sender_id') required this.senderId, required this.content, @JsonKey(name: 'message_type')@MessageTypeConverter() required this.type, @JsonKey(name: 'media_url') this.mediaUrl, this.timestamp, @JsonKey(name: 'read_by') final  List<String> readBy = const []}): _readBy = readBy;
   factory _Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
 
 @override final  String id;
-@override final  String chatRoomId;
-@override final  String senderId;
+@override@JsonKey(name: 'chat_room_id') final  String chatRoomId;
+@override@JsonKey(name: 'sender_id') final  String senderId;
 @override final  String content;
-@override@MessageTypeConverter() final  MessageType type;
-@override final  String? mediaUrl;
+@override@JsonKey(name: 'message_type')@MessageTypeConverter() final  MessageType type;
+@override@JsonKey(name: 'media_url') final  String? mediaUrl;
 @override final  int? timestamp;
  final  List<String> _readBy;
-@override@JsonKey() List<String> get readBy {
+@override@JsonKey(name: 'read_by') List<String> get readBy {
   if (_readBy is EqualUnmodifiableListView) return _readBy;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_readBy);
@@ -267,7 +267,7 @@ abstract mixin class _$MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   factory _$MessageCopyWith(_Message value, $Res Function(_Message) _then) = __$MessageCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String chatRoomId, String senderId, String content,@MessageTypeConverter() MessageType type, String? mediaUrl, int? timestamp, List<String> readBy
+ String id,@JsonKey(name: 'chat_room_id') String chatRoomId,@JsonKey(name: 'sender_id') String senderId, String content,@JsonKey(name: 'message_type')@MessageTypeConverter() MessageType type,@JsonKey(name: 'media_url') String? mediaUrl, int? timestamp,@JsonKey(name: 'read_by') List<String> readBy
 });
 
 

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatRoom {
 
- String? get id; List<String> get participantIds; int? get createdAt; int? get updatedAt; String get createdBy; String? get name; String? get avatarUrl; bool get isGroup; Message? get lastMessage;
+ String? get id;@JsonKey(name: 'participant_ids') List<String> get participantIds;@JsonKey(name: 'created_at') int? get createdAt;@JsonKey(name: 'updated_at') int? get updatedAt;@JsonKey(name: 'created_by') String get createdBy; String? get name;@JsonKey(name: 'avatar_url') String? get avatarUrl;@JsonKey(name: 'is_group') bool get isGroup;@JsonKey(name: 'last_message') Message? get lastMessage;
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $ChatRoomCopyWith<$Res>  {
   factory $ChatRoomCopyWith(ChatRoom value, $Res Function(ChatRoom) _then) = _$ChatRoomCopyWithImpl;
 @useResult
 $Res call({
- String? id, List<String> participantIds, int? createdAt, int? updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
+ String? id,@JsonKey(name: 'participant_ids') List<String> participantIds,@JsonKey(name: 'created_at') int? createdAt,@JsonKey(name: 'updated_at') int? updatedAt,@JsonKey(name: 'created_by') String createdBy, String? name,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'is_group') bool isGroup,@JsonKey(name: 'last_message') Message? lastMessage
 });
 
 
@@ -173,7 +173,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  List<String> participantIds,  int? createdAt,  int? updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'participant_ids')  List<String> participantIds, @JsonKey(name: 'created_at')  int? createdAt, @JsonKey(name: 'updated_at')  int? updatedAt, @JsonKey(name: 'created_by')  String createdBy,  String? name, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'is_group')  bool isGroup, @JsonKey(name: 'last_message')  Message? lastMessage)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatRoom() when $default != null:
 return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
@@ -194,7 +194,7 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  List<String> participantIds,  int? createdAt,  int? updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id, @JsonKey(name: 'participant_ids')  List<String> participantIds, @JsonKey(name: 'created_at')  int? createdAt, @JsonKey(name: 'updated_at')  int? updatedAt, @JsonKey(name: 'created_by')  String createdBy,  String? name, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'is_group')  bool isGroup, @JsonKey(name: 'last_message')  Message? lastMessage)  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoom():
 return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
@@ -214,7 +214,7 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  List<String> participantIds,  int? createdAt,  int? updatedAt,  String createdBy,  String? name,  String? avatarUrl,  bool isGroup,  Message? lastMessage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id, @JsonKey(name: 'participant_ids')  List<String> participantIds, @JsonKey(name: 'created_at')  int? createdAt, @JsonKey(name: 'updated_at')  int? updatedAt, @JsonKey(name: 'created_by')  String createdBy,  String? name, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'is_group')  bool isGroup, @JsonKey(name: 'last_message')  Message? lastMessage)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoom() when $default != null:
 return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_that.createdBy,_that.name,_that.avatarUrl,_that.isGroup,_that.lastMessage);case _:
@@ -229,24 +229,24 @@ return $default(_that.id,_that.participantIds,_that.createdAt,_that.updatedAt,_t
 @JsonSerializable()
 
 class _ChatRoom implements ChatRoom {
-   _ChatRoom({this.id, required final  List<String> participantIds, this.createdAt, this.updatedAt, required this.createdBy, this.name, this.avatarUrl, this.isGroup = false, this.lastMessage}): _participantIds = participantIds;
+   _ChatRoom({this.id, @JsonKey(name: 'participant_ids') required final  List<String> participantIds, @JsonKey(name: 'created_at') this.createdAt, @JsonKey(name: 'updated_at') this.updatedAt, @JsonKey(name: 'created_by') required this.createdBy, this.name, @JsonKey(name: 'avatar_url') this.avatarUrl, @JsonKey(name: 'is_group') this.isGroup = false, @JsonKey(name: 'last_message') this.lastMessage}): _participantIds = participantIds;
   factory _ChatRoom.fromJson(Map<String, dynamic> json) => _$ChatRoomFromJson(json);
 
 @override final  String? id;
  final  List<String> _participantIds;
-@override List<String> get participantIds {
+@override@JsonKey(name: 'participant_ids') List<String> get participantIds {
   if (_participantIds is EqualUnmodifiableListView) return _participantIds;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_participantIds);
 }
 
-@override final  int? createdAt;
-@override final  int? updatedAt;
-@override final  String createdBy;
+@override@JsonKey(name: 'created_at') final  int? createdAt;
+@override@JsonKey(name: 'updated_at') final  int? updatedAt;
+@override@JsonKey(name: 'created_by') final  String createdBy;
 @override final  String? name;
-@override final  String? avatarUrl;
-@override@JsonKey() final  bool isGroup;
-@override final  Message? lastMessage;
+@override@JsonKey(name: 'avatar_url') final  String? avatarUrl;
+@override@JsonKey(name: 'is_group') final  bool isGroup;
+@override@JsonKey(name: 'last_message') final  Message? lastMessage;
 
 /// Create a copy of ChatRoom
 /// with the given fields replaced by the non-null parameter values.
@@ -281,7 +281,7 @@ abstract mixin class _$ChatRoomCopyWith<$Res> implements $ChatRoomCopyWith<$Res>
   factory _$ChatRoomCopyWith(_ChatRoom value, $Res Function(_ChatRoom) _then) = __$ChatRoomCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, List<String> participantIds, int? createdAt, int? updatedAt, String createdBy, String? name, String? avatarUrl, bool isGroup, Message? lastMessage
+ String? id,@JsonKey(name: 'participant_ids') List<String> participantIds,@JsonKey(name: 'created_at') int? createdAt,@JsonKey(name: 'updated_at') int? updatedAt,@JsonKey(name: 'created_by') String createdBy, String? name,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'is_group') bool isGroup,@JsonKey(name: 'last_message') Message? lastMessage
 });
 
 

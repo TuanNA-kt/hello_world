@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ChatsSearchBar extends StatelessWidget {
+class AppSearchBar extends StatelessWidget {
   final String hintText;
   final void Function(String) onChanged;
-  const ChatsSearchBar({super.key, required this.onChanged, required this.hintText});
+  const AppSearchBar({super.key, required this.onChanged, required this.hintText});
 
   @override
   Widget build(BuildContext context) {

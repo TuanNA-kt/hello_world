@@ -26,8 +26,8 @@ Future<void> setupDependencies() async {
         () =>
         Dio(
           BaseOptions(
-            connectTimeout: const Duration(milliseconds: 5000),
-            receiveTimeout: const Duration(milliseconds: 3000),
+            connectTimeout: const Duration(milliseconds: 20000),
+            receiveTimeout: const Duration(milliseconds: 20000),
           ),
         ),
   );

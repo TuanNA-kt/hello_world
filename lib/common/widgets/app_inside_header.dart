@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hello_world/common/app_colors.dart';
-import 'package:models/chat_room_display.dart';
+import 'package:flutter_svg/svg.dart';
 
-class ChatsHeader extends StatelessWidget {
-  const ChatsHeader({super.key});
+import '../app_colors.dart';
 
-  void _onPressed(BuildContext context) {
-    context.pushNamed('newChat');
-  }
+class AppInsideHeader extends StatelessWidget {
+  final String header;
+  final String addIconPath;
+  final VoidCallback onAddPressed;
+
+  const AppInsideHeader({super.key, required this.header, required this.addIconPath, required this.onAddPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,13 @@ class ChatsHeader extends StatelessWidget {
             children: [
               Expanded(
                   child: Text(
-                    "Tin nhắn",
+                    header,
                     style: TextStyle(fontSize: 30, color: AppColors.white),
                   )
               ),
               InkWell(
                 onTap: () {
-                  _onPressed(context);
+                  onAddPressed;
                 },
                 customBorder: const CircleBorder(),
                 child: Container(
@@ -34,7 +33,7 @@ class ChatsHeader extends StatelessWidget {
                   height: 35,
                   decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColors.white),
                   child: Center(
-                      child: SvgPicture.asset('assets/images/ic_new_chat.svg')
+                      child: SvgPicture.asset(addIconPath)
                   ),
                 ),
               ),

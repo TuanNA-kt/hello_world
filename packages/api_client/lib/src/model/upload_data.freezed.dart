@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UploadData {
 
- String get id; String get title;@JsonKey(name: 'url_viewer') String get urlViewer; String get url;@JsonKey(name: 'display_url') String get displayUrl; String get width; String get height; String get size; String get time; String get expiration; ImageDetail get image; ImageDetail get thumb; ImageDetail get medium;@JsonKey(name: 'delete_url') String get deleteUrl;
+ String get id; String get title;@JsonKey(name: 'url_viewer') String get urlViewer; String get url;@JsonKey(name: 'display_url') String get displayUrl; int get width; int get height; int get size; int get time; int get expiration; ImageDetail get image; ImageDetail get thumb; ImageDetail get medium;@JsonKey(name: 'delete_url') String get deleteUrl;
 /// Create a copy of UploadData
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UploadDataCopyWith<$Res>  {
   factory $UploadDataCopyWith(UploadData value, $Res Function(UploadData) _then) = _$UploadDataCopyWithImpl;
 @useResult
 $Res call({
- String id, String title,@JsonKey(name: 'url_viewer') String urlViewer, String url,@JsonKey(name: 'display_url') String displayUrl, String width, String height, String size, String time, String expiration, ImageDetail image, ImageDetail thumb, ImageDetail medium,@JsonKey(name: 'delete_url') String deleteUrl
+ String id, String title,@JsonKey(name: 'url_viewer') String urlViewer, String url,@JsonKey(name: 'display_url') String displayUrl, int width, int height, int size, int time, int expiration, ImageDetail image, ImageDetail thumb, ImageDetail medium,@JsonKey(name: 'delete_url') String deleteUrl
 });
 
 
@@ -73,11 +73,11 @@ as String,urlViewer: null == urlViewer ? _self.urlViewer : urlViewer // ignore: 
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,displayUrl: null == displayUrl ? _self.displayUrl : displayUrl // ignore: cast_nullable_to_non_nullable
 as String,width: null == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
-as String,height: null == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
-as String,size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
-as String,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
-as String,expiration: null == expiration ? _self.expiration : expiration // ignore: cast_nullable_to_non_nullable
-as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as int,height: null == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
+as int,size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as int,expiration: null == expiration ? _self.expiration : expiration // ignore: cast_nullable_to_non_nullable
+as int,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as ImageDetail,thumb: null == thumb ? _self.thumb : thumb // ignore: cast_nullable_to_non_nullable
 as ImageDetail,medium: null == medium ? _self.medium : medium // ignore: cast_nullable_to_non_nullable
 as ImageDetail,deleteUrl: null == deleteUrl ? _self.deleteUrl : deleteUrl // ignore: cast_nullable_to_non_nullable
@@ -193,7 +193,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title, @JsonKey(name: 'url_viewer')  String urlViewer,  String url, @JsonKey(name: 'display_url')  String displayUrl,  String width,  String height,  String size,  String time,  String expiration,  ImageDetail image,  ImageDetail thumb,  ImageDetail medium, @JsonKey(name: 'delete_url')  String deleteUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title, @JsonKey(name: 'url_viewer')  String urlViewer,  String url, @JsonKey(name: 'display_url')  String displayUrl,  int width,  int height,  int size,  int time,  int expiration,  ImageDetail image,  ImageDetail thumb,  ImageDetail medium, @JsonKey(name: 'delete_url')  String deleteUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UploadData() when $default != null:
 return $default(_that.id,_that.title,_that.urlViewer,_that.url,_that.displayUrl,_that.width,_that.height,_that.size,_that.time,_that.expiration,_that.image,_that.thumb,_that.medium,_that.deleteUrl);case _:
@@ -214,7 +214,7 @@ return $default(_that.id,_that.title,_that.urlViewer,_that.url,_that.displayUrl,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title, @JsonKey(name: 'url_viewer')  String urlViewer,  String url, @JsonKey(name: 'display_url')  String displayUrl,  String width,  String height,  String size,  String time,  String expiration,  ImageDetail image,  ImageDetail thumb,  ImageDetail medium, @JsonKey(name: 'delete_url')  String deleteUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title, @JsonKey(name: 'url_viewer')  String urlViewer,  String url, @JsonKey(name: 'display_url')  String displayUrl,  int width,  int height,  int size,  int time,  int expiration,  ImageDetail image,  ImageDetail thumb,  ImageDetail medium, @JsonKey(name: 'delete_url')  String deleteUrl)  $default,) {final _that = this;
 switch (_that) {
 case _UploadData():
 return $default(_that.id,_that.title,_that.urlViewer,_that.url,_that.displayUrl,_that.width,_that.height,_that.size,_that.time,_that.expiration,_that.image,_that.thumb,_that.medium,_that.deleteUrl);case _:
@@ -234,7 +234,7 @@ return $default(_that.id,_that.title,_that.urlViewer,_that.url,_that.displayUrl,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title, @JsonKey(name: 'url_viewer')  String urlViewer,  String url, @JsonKey(name: 'display_url')  String displayUrl,  String width,  String height,  String size,  String time,  String expiration,  ImageDetail image,  ImageDetail thumb,  ImageDetail medium, @JsonKey(name: 'delete_url')  String deleteUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title, @JsonKey(name: 'url_viewer')  String urlViewer,  String url, @JsonKey(name: 'display_url')  String displayUrl,  int width,  int height,  int size,  int time,  int expiration,  ImageDetail image,  ImageDetail thumb,  ImageDetail medium, @JsonKey(name: 'delete_url')  String deleteUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _UploadData() when $default != null:
 return $default(_that.id,_that.title,_that.urlViewer,_that.url,_that.displayUrl,_that.width,_that.height,_that.size,_that.time,_that.expiration,_that.image,_that.thumb,_that.medium,_that.deleteUrl);case _:
@@ -257,11 +257,11 @@ class _UploadData implements UploadData {
 @override@JsonKey(name: 'url_viewer') final  String urlViewer;
 @override final  String url;
 @override@JsonKey(name: 'display_url') final  String displayUrl;
-@override final  String width;
-@override final  String height;
-@override final  String size;
-@override final  String time;
-@override final  String expiration;
+@override final  int width;
+@override final  int height;
+@override final  int size;
+@override final  int time;
+@override final  int expiration;
 @override final  ImageDetail image;
 @override final  ImageDetail thumb;
 @override final  ImageDetail medium;
@@ -300,7 +300,7 @@ abstract mixin class _$UploadDataCopyWith<$Res> implements $UploadDataCopyWith<$
   factory _$UploadDataCopyWith(_UploadData value, $Res Function(_UploadData) _then) = __$UploadDataCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title,@JsonKey(name: 'url_viewer') String urlViewer, String url,@JsonKey(name: 'display_url') String displayUrl, String width, String height, String size, String time, String expiration, ImageDetail image, ImageDetail thumb, ImageDetail medium,@JsonKey(name: 'delete_url') String deleteUrl
+ String id, String title,@JsonKey(name: 'url_viewer') String urlViewer, String url,@JsonKey(name: 'display_url') String displayUrl, int width, int height, int size, int time, int expiration, ImageDetail image, ImageDetail thumb, ImageDetail medium,@JsonKey(name: 'delete_url') String deleteUrl
 });
 
 
@@ -325,11 +325,11 @@ as String,urlViewer: null == urlViewer ? _self.urlViewer : urlViewer // ignore: 
 as String,url: null == url ? _self.url : url // ignore: cast_nullable_to_non_nullable
 as String,displayUrl: null == displayUrl ? _self.displayUrl : displayUrl // ignore: cast_nullable_to_non_nullable
 as String,width: null == width ? _self.width : width // ignore: cast_nullable_to_non_nullable
-as String,height: null == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
-as String,size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
-as String,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
-as String,expiration: null == expiration ? _self.expiration : expiration // ignore: cast_nullable_to_non_nullable
-as String,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
+as int,height: null == height ? _self.height : height // ignore: cast_nullable_to_non_nullable
+as int,size: null == size ? _self.size : size // ignore: cast_nullable_to_non_nullable
+as int,time: null == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
+as int,expiration: null == expiration ? _self.expiration : expiration // ignore: cast_nullable_to_non_nullable
+as int,image: null == image ? _self.image : image // ignore: cast_nullable_to_non_nullable
 as ImageDetail,thumb: null == thumb ? _self.thumb : thumb // ignore: cast_nullable_to_non_nullable
 as ImageDetail,medium: null == medium ? _self.medium : medium // ignore: cast_nullable_to_non_nullable
 as ImageDetail,deleteUrl: null == deleteUrl ? _self.deleteUrl : deleteUrl // ignore: cast_nullable_to_non_nullable

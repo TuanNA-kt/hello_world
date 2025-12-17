@@ -2,6 +2,7 @@ import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hello_world/common/widgets/app_no_result.dart';
 import 'package:hello_world/modules/new_chat/bloc/new_chat_cubit.dart';
 import 'package:hello_world/modules/new_chat/bloc/new_chat_state.dart';
 import 'package:hello_world/modules/new_chat/view/friend_list_item.dart';
@@ -29,21 +30,7 @@ class FriendList extends StatelessWidget {
             : state.friendList;
 
         if (state.isSearching && users.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/ic_search_empty.svg',
-                  fit: BoxFit.fitWidth,
-                ),
-                Text(
-                  "Khong tim thay ket qua phu hop",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          );
+          return AppNoResult();
         }
 
         return Padding(

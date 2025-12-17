@@ -43,7 +43,7 @@ class ChatListItem extends StatelessWidget {
       ),
       title: Text(chatRoomDisplay.name,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-      subtitle: Text(chatRoomDisplay.lastMessageText, maxLines: 1, overflow: TextOverflow.ellipsis),
+      subtitle: Text(chatRoomDisplay.lastMessage, maxLines: 1, overflow: TextOverflow.ellipsis),
       trailing: Text(
         chatRoomDisplay.updatedAt.toString(),
         style: const TextStyle(color: Colors.black45),

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String get id; String get name; String? get email;@JsonKey(name: 'avatar_url') String? get avatarUrl;@JsonKey(name: 'phone_number') String get phoneNumber; int? get birthday;@JsonKey(name: 'last_seen') int? get lastSeen;@JsonKey(name: 'fcm_token') String? get fcmToken; int? get createdAt;
+ String get id; String get name; String? get email;@JsonKey(name: 'avatar_url') String? get avatarUrl;@JsonKey(name: 'phone_number') String get phoneNumber; int? get birthday;@JsonKey(name: 'last_seen') int? get lastSeen;@JsonKey(name: 'fcm_token') String? get fcmToken;@JsonKey(name: 'created_at') int? get createdAt;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? email,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'phone_number') String phoneNumber, int? birthday,@JsonKey(name: 'last_seen') int? lastSeen,@JsonKey(name: 'fcm_token') String? fcmToken, int? createdAt
+ String id, String name, String? email,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'phone_number') String phoneNumber, int? birthday,@JsonKey(name: 'last_seen') int? lastSeen,@JsonKey(name: 'fcm_token') String? fcmToken,@JsonKey(name: 'created_at') int? createdAt
 });
 
 
@@ -161,7 +161,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? email, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'phone_number')  String phoneNumber,  int? birthday, @JsonKey(name: 'last_seen')  int? lastSeen, @JsonKey(name: 'fcm_token')  String? fcmToken,  int? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? email, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'phone_number')  String phoneNumber,  int? birthday, @JsonKey(name: 'last_seen')  int? lastSeen, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'created_at')  int? createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumber,_that.birthday,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
@@ -182,7 +182,7 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumbe
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? email, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'phone_number')  String phoneNumber,  int? birthday, @JsonKey(name: 'last_seen')  int? lastSeen, @JsonKey(name: 'fcm_token')  String? fcmToken,  int? createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? email, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'phone_number')  String phoneNumber,  int? birthday, @JsonKey(name: 'last_seen')  int? lastSeen, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'created_at')  int? createdAt)  $default,) {final _that = this;
 switch (_that) {
 case _User():
 return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumber,_that.birthday,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
@@ -202,7 +202,7 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumbe
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? email, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'phone_number')  String phoneNumber,  int? birthday, @JsonKey(name: 'last_seen')  int? lastSeen, @JsonKey(name: 'fcm_token')  String? fcmToken,  int? createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? email, @JsonKey(name: 'avatar_url')  String? avatarUrl, @JsonKey(name: 'phone_number')  String phoneNumber,  int? birthday, @JsonKey(name: 'last_seen')  int? lastSeen, @JsonKey(name: 'fcm_token')  String? fcmToken, @JsonKey(name: 'created_at')  int? createdAt)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumber,_that.birthday,_that.lastSeen,_that.fcmToken,_that.createdAt);case _:
@@ -217,7 +217,7 @@ return $default(_that.id,_that.name,_that.email,_that.avatarUrl,_that.phoneNumbe
 @JsonSerializable()
 
 class _User implements User {
-  const _User({required this.id, required this.name, this.email, @JsonKey(name: 'avatar_url') this.avatarUrl, @JsonKey(name: 'phone_number') this.phoneNumber = "", this.birthday, @JsonKey(name: 'last_seen') this.lastSeen, @JsonKey(name: 'fcm_token') this.fcmToken, this.createdAt});
+  const _User({required this.id, required this.name, this.email, @JsonKey(name: 'avatar_url') this.avatarUrl, @JsonKey(name: 'phone_number') this.phoneNumber = "", this.birthday, @JsonKey(name: 'last_seen') this.lastSeen, @JsonKey(name: 'fcm_token') this.fcmToken, @JsonKey(name: 'created_at') this.createdAt});
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  String id;
@@ -228,7 +228,7 @@ class _User implements User {
 @override final  int? birthday;
 @override@JsonKey(name: 'last_seen') final  int? lastSeen;
 @override@JsonKey(name: 'fcm_token') final  String? fcmToken;
-@override final  int? createdAt;
+@override@JsonKey(name: 'created_at') final  int? createdAt;
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
@@ -263,7 +263,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? email,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'phone_number') String phoneNumber, int? birthday,@JsonKey(name: 'last_seen') int? lastSeen,@JsonKey(name: 'fcm_token') String? fcmToken, int? createdAt
+ String id, String name, String? email,@JsonKey(name: 'avatar_url') String? avatarUrl,@JsonKey(name: 'phone_number') String phoneNumber, int? birthday,@JsonKey(name: 'last_seen') int? lastSeen,@JsonKey(name: 'fcm_token') String? fcmToken,@JsonKey(name: 'created_at') int? createdAt
 });
 
 

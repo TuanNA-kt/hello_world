@@ -1,11 +1,32 @@
-
+import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hello_world/common/widgets/app_inside_background.dart';
+import 'package:hello_world/common/widgets/app_inside_header.dart';
+import 'package:user_repository/user_repository.dart';
 
-class ContactsScreen extends StatelessWidget{
+import '../../../di/injection.dart';
+import '../../chats/bloc/chats_bloc.dart';
+import 'contacts_view.dart';
+
+class ContactsScreen extends StatelessWidget {
   const ContactsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Text("Contact screen");
+    return Scaffold(
+      body: Stack(
+        children: [
+          AppInsideBackground(),
+          BlocProvider(
+            create: (BuildContext context) => ChatsBloc(
+              chatRepository: sl<ChatRepository>(),
+              currentUserId: sl<UserRepository>().currentUser.id,
+            ),
+            child: const ContactsView(),
+          ),
+        ],
+      ),
+    );
   }
 }

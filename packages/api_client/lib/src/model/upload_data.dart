@@ -14,11 +14,13 @@ abstract class UploadData with _$UploadData {
     @JsonKey(name: 'url_viewer') required String urlViewer,
     required String url,
     @JsonKey(name: 'display_url') required String displayUrl,
-    required String width,
-    required String height,
-    required String size,
-    required String time,
-    required String expiration,
+
+    required int width,
+    required int height,
+    required int size,
+    required int time,
+    required int expiration,
+
     required ImageDetail image,
     required ImageDetail thumb,
     required ImageDetail medium,

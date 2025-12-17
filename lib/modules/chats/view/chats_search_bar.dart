@@ -2,7 +2,9 @@
 import 'package:flutter/material.dart';
 
 class ChatsSearchBar extends StatelessWidget {
-  const ChatsSearchBar({super.key});
+  const ChatsSearchBar({super.key, required this.onChanged});
+
+  final ValueChanged<String> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,16 @@ class ChatsSearchBar extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(25),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Icon(Icons.search, color: Colors.grey),
-            SizedBox(width: 10),
+            const Icon(Icons.search, color: Colors.grey),
+            const SizedBox(width: 10),
             Expanded(
               child: TextField(
-                decoration: InputDecoration(
+                onChanged: (string) {
+
+                },
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: "Tìm kiếm tin nhắn...",
                 ),

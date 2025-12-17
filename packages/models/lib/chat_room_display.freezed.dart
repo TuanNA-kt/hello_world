@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ChatRoomDisplay {
 
- String get id; String get name; String get avatarUrl; int? get updatedAt; String get lastMessageText; String get senderId; int get unreadCount; bool get isTyping;
+ String get id; String get name;@JsonKey(name: 'avatar_url') String get avatarUrl;@JsonKey(name: 'updated_at') int? get updatedAt;@JsonKey(name: 'last_message') String get lastMessage;@JsonKey(name: 'sender_id') String get senderId;@JsonKey(name: 'unread_count') int get unreadCount;@JsonKey(name: 'is_typing') bool get isTyping;
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ChatRoomDisplayCopyWith<ChatRoomDisplay> get copyWith => _$ChatRoomDisplayCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatRoomDisplay&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.isTyping, isTyping) || other.isTyping == isTyping));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChatRoomDisplay&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.isTyping, isTyping) || other.isTyping == isTyping));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,avatarUrl,updatedAt,lastMessageText,senderId,unreadCount,isTyping);
+int get hashCode => Object.hash(runtimeType,id,name,avatarUrl,updatedAt,lastMessage,senderId,unreadCount,isTyping);
 
 @override
 String toString() {
-  return 'ChatRoomDisplay(id: $id, name: $name, avatarUrl: $avatarUrl, updatedAt: $updatedAt, lastMessageText: $lastMessageText, senderId: $senderId, unreadCount: $unreadCount, isTyping: $isTyping)';
+  return 'ChatRoomDisplay(id: $id, name: $name, avatarUrl: $avatarUrl, updatedAt: $updatedAt, lastMessage: $lastMessage, senderId: $senderId, unreadCount: $unreadCount, isTyping: $isTyping)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ChatRoomDisplayCopyWith<$Res>  {
   factory $ChatRoomDisplayCopyWith(ChatRoomDisplay value, $Res Function(ChatRoomDisplay) _then) = _$ChatRoomDisplayCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String avatarUrl, int? updatedAt, String lastMessageText, String senderId, int unreadCount, bool isTyping
+ String id, String name,@JsonKey(name: 'avatar_url') String avatarUrl,@JsonKey(name: 'updated_at') int? updatedAt,@JsonKey(name: 'last_message') String lastMessage,@JsonKey(name: 'sender_id') String senderId,@JsonKey(name: 'unread_count') int unreadCount,@JsonKey(name: 'is_typing') bool isTyping
 });
 
 
@@ -65,13 +65,13 @@ class _$ChatRoomDisplayCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = freezed,Object? lastMessageText = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = freezed,Object? lastMessage = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as int?,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
+as int?,lastMessage: null == lastMessage ? _self.lastMessage : lastMessage // ignore: cast_nullable_to_non_nullable
 as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
 as String,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,isTyping: null == isTyping ? _self.isTyping : isTyping // ignore: cast_nullable_to_non_nullable
@@ -160,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String avatarUrl,  int? updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'avatar_url')  String avatarUrl, @JsonKey(name: 'updated_at')  int? updatedAt, @JsonKey(name: 'last_message')  String lastMessage, @JsonKey(name: 'sender_id')  String senderId, @JsonKey(name: 'unread_count')  int unreadCount, @JsonKey(name: 'is_typing')  bool isTyping)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChatRoomDisplay() when $default != null:
-return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessageText,_that.senderId,_that.unreadCount,_that.isTyping);case _:
+return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessage,_that.senderId,_that.unreadCount,_that.isTyping);case _:
   return orElse();
 
 }
@@ -181,10 +181,10 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMe
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String avatarUrl,  int? updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name, @JsonKey(name: 'avatar_url')  String avatarUrl, @JsonKey(name: 'updated_at')  int? updatedAt, @JsonKey(name: 'last_message')  String lastMessage, @JsonKey(name: 'sender_id')  String senderId, @JsonKey(name: 'unread_count')  int unreadCount, @JsonKey(name: 'is_typing')  bool isTyping)  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoomDisplay():
-return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessageText,_that.senderId,_that.unreadCount,_that.isTyping);case _:
+return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessage,_that.senderId,_that.unreadCount,_that.isTyping);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -201,10 +201,10 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMe
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String avatarUrl,  int? updatedAt,  String lastMessageText,  String senderId,  int unreadCount,  bool isTyping)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name, @JsonKey(name: 'avatar_url')  String avatarUrl, @JsonKey(name: 'updated_at')  int? updatedAt, @JsonKey(name: 'last_message')  String lastMessage, @JsonKey(name: 'sender_id')  String senderId, @JsonKey(name: 'unread_count')  int unreadCount, @JsonKey(name: 'is_typing')  bool isTyping)?  $default,) {final _that = this;
 switch (_that) {
 case _ChatRoomDisplay() when $default != null:
-return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessageText,_that.senderId,_that.unreadCount,_that.isTyping);case _:
+return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMessage,_that.senderId,_that.unreadCount,_that.isTyping);case _:
   return null;
 
 }
@@ -216,17 +216,17 @@ return $default(_that.id,_that.name,_that.avatarUrl,_that.updatedAt,_that.lastMe
 @JsonSerializable()
 
 class _ChatRoomDisplay implements ChatRoomDisplay {
-   _ChatRoomDisplay({required this.id, required this.name, required this.avatarUrl, this.updatedAt, required this.lastMessageText, required this.senderId, this.unreadCount = 0, this.isTyping = false});
+   _ChatRoomDisplay({required this.id, required this.name, @JsonKey(name: 'avatar_url') required this.avatarUrl, @JsonKey(name: 'updated_at') this.updatedAt, @JsonKey(name: 'last_message') required this.lastMessage, @JsonKey(name: 'sender_id') required this.senderId, @JsonKey(name: 'unread_count') this.unreadCount = 0, @JsonKey(name: 'is_typing') this.isTyping = false});
   factory _ChatRoomDisplay.fromJson(Map<String, dynamic> json) => _$ChatRoomDisplayFromJson(json);
 
 @override final  String id;
 @override final  String name;
-@override final  String avatarUrl;
-@override final  int? updatedAt;
-@override final  String lastMessageText;
-@override final  String senderId;
-@override@JsonKey() final  int unreadCount;
-@override@JsonKey() final  bool isTyping;
+@override@JsonKey(name: 'avatar_url') final  String avatarUrl;
+@override@JsonKey(name: 'updated_at') final  int? updatedAt;
+@override@JsonKey(name: 'last_message') final  String lastMessage;
+@override@JsonKey(name: 'sender_id') final  String senderId;
+@override@JsonKey(name: 'unread_count') final  int unreadCount;
+@override@JsonKey(name: 'is_typing') final  bool isTyping;
 
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +241,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatRoomDisplay&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.lastMessageText, lastMessageText) || other.lastMessageText == lastMessageText)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.isTyping, isTyping) || other.isTyping == isTyping));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChatRoomDisplay&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.avatarUrl, avatarUrl) || other.avatarUrl == avatarUrl)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.lastMessage, lastMessage) || other.lastMessage == lastMessage)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.unreadCount, unreadCount) || other.unreadCount == unreadCount)&&(identical(other.isTyping, isTyping) || other.isTyping == isTyping));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,avatarUrl,updatedAt,lastMessageText,senderId,unreadCount,isTyping);
+int get hashCode => Object.hash(runtimeType,id,name,avatarUrl,updatedAt,lastMessage,senderId,unreadCount,isTyping);
 
 @override
 String toString() {
-  return 'ChatRoomDisplay(id: $id, name: $name, avatarUrl: $avatarUrl, updatedAt: $updatedAt, lastMessageText: $lastMessageText, senderId: $senderId, unreadCount: $unreadCount, isTyping: $isTyping)';
+  return 'ChatRoomDisplay(id: $id, name: $name, avatarUrl: $avatarUrl, updatedAt: $updatedAt, lastMessage: $lastMessage, senderId: $senderId, unreadCount: $unreadCount, isTyping: $isTyping)';
 }
 
 
@@ -261,7 +261,7 @@ abstract mixin class _$ChatRoomDisplayCopyWith<$Res> implements $ChatRoomDisplay
   factory _$ChatRoomDisplayCopyWith(_ChatRoomDisplay value, $Res Function(_ChatRoomDisplay) _then) = __$ChatRoomDisplayCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String avatarUrl, int? updatedAt, String lastMessageText, String senderId, int unreadCount, bool isTyping
+ String id, String name,@JsonKey(name: 'avatar_url') String avatarUrl,@JsonKey(name: 'updated_at') int? updatedAt,@JsonKey(name: 'last_message') String lastMessage,@JsonKey(name: 'sender_id') String senderId,@JsonKey(name: 'unread_count') int unreadCount,@JsonKey(name: 'is_typing') bool isTyping
 });
 
 
@@ -278,13 +278,13 @@ class __$ChatRoomDisplayCopyWithImpl<$Res>
 
 /// Create a copy of ChatRoomDisplay
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = freezed,Object? lastMessageText = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? avatarUrl = null,Object? updatedAt = freezed,Object? lastMessage = null,Object? senderId = null,Object? unreadCount = null,Object? isTyping = null,}) {
   return _then(_ChatRoomDisplay(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,avatarUrl: null == avatarUrl ? _self.avatarUrl : avatarUrl // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as int?,lastMessageText: null == lastMessageText ? _self.lastMessageText : lastMessageText // ignore: cast_nullable_to_non_nullable
+as int?,lastMessage: null == lastMessage ? _self.lastMessage : lastMessage // ignore: cast_nullable_to_non_nullable
 as String,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
 as String,unreadCount: null == unreadCount ? _self.unreadCount : unreadCount // ignore: cast_nullable_to_non_nullable
 as int,isTyping: null == isTyping ? _self.isTyping : isTyping // ignore: cast_nullable_to_non_nullable
